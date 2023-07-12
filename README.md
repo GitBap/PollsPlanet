@@ -3,7 +3,7 @@
 _Some notes_
 
 - generate unique tokens for each e-mail survey
-  - can use MD5, GUID, nanoID, UUID
+  - can use MD5, GUID, nanoID, UUID or JWT (JSON Web Tokens)
   - possibly add QR code to the e-mail for easy access
 - to hash passwords, use bcrypt or cypto module (Node.js)
 - possibly use [mailgun](https://www.mailgun.com/) API to for emails (send, receive, tracking)
