@@ -6,6 +6,7 @@ _Some notes_
   - can use MD5, GUID, nanoID, UUID
   - possibly add QR code to the e-mail for easy access
 - to hash passwords, use bcrypt or cypto module (Node.js)
+- possibly use [mailgun](https://www.mailgun.com/) API to for emails (send, receive, tracking)
 
 _Reference Survey Companies_ \
 [SurveyMonkey](https://www.surveymonkey.com/) \
