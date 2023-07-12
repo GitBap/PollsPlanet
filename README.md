@@ -6,7 +6,7 @@ _Some notes_
   - can use MD5, GUID, nanoID, UUID or JWT (JSON Web Tokens)
   - possibly add QR code to the e-mail for easy access
 - bcrypt or cypto module (Node.js) for password hashing
-- oAuth/WebAuthn for authentication?
+- oAuth/WebAuthn/[okta](https://developer.okta.com/docs/guides/embedded-siw/main/) for authentication?
 - possibly use [mailgun](https://www.mailgun.com/) API to for emails (send, receive, tracking)
 
 _Reference Survey Companies_ \
