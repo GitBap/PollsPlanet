@@ -8,8 +8,7 @@ _Some notes_
 - bcrypt or cypto module (Node.js) for password hashing
 - oAuth/WebAuthn/[okta](https://developer.okta.com/docs/guides/embedded-siw/main/) for authentication?
 - possibly use [mailgun](https://www.mailgun.com/) API to for emails (send, receive, tracking)
-
-- accessibility
+- implement some accessibility feature(s)
 - [Dark Mode](https://dev.to/alexeagleson/how-to-create-a-dark-mode-component-in-react-3ibg)
 - [Language Translation](https://www.npmjs.com/package/i18n)
 
