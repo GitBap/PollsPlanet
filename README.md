@@ -9,6 +9,10 @@ _Some notes_
 - oAuth/WebAuthn/[okta](https://developer.okta.com/docs/guides/embedded-siw/main/) for authentication?
 - possibly use [mailgun](https://www.mailgun.com/) API to for emails (send, receive, tracking)
 
+- accessibility
+- [Dark Mode](https://dev.to/alexeagleson/how-to-create-a-dark-mode-component-in-react-3ibg)
+- [Language Translation](https://www.npmjs.com/package/i18n)
+
 _Reference Survey Companies_ \
 [SurveyMonkey](https://www.surveymonkey.com/) \
 [mailchimp](https://mailchimp.com/) \
