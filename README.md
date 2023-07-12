@@ -1,6 +1,11 @@
 # PollsPlanet
-survey/polling application
 
+_Some notes_
+
+- generate unique tokens for each e-mail survey
+  - can use MD5, GUID, nanoID, UUID
+  - possibly add QR code to the e-mail for easy access
+- to hash passwords, use bcrypt or cypto module (Node.js)
 
 _Reference Survey Companies_ \
 [SurveyMonkey](https://www.surveymonkey.com/) \
