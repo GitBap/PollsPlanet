@@ -1,1 +1,52 @@
+@import "./components/styles/reset.scss";
+@import "./components/styles/variables.scss";
 
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap");
+
+// UI
+@import "./components/styles/ui/button.scss";
+
+body {
+  height: 100vh;
+  background-color: $background-color;
+  color: $text-color;
+  font-family: "Jost", sans-serif;
+
+  // Footer position is always at the bottom
+  .website {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+      flex: 1 1 auto;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $heading-color;
+    font-weight: 600;
+  }
+
+  ul {
+    li {
+      a {
+        color: $heading-color;
+        font-weight: 600;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .container {
+    max-width: 1250px;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,61 @@
+@import "./variables.scss";
+
+header {
+  padding: 20px 0;
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo-block {
+      svg {
+        g {
+          fill: $button-text-color;
+
+          .circle {
+            fill: $primary-color;
+          }
+        }
+      }
+    }
+
+    nav {
+      margin-left: 80px;
+      margin-right: auto;
+
+      ul {
+        display: flex;
+        gap: 20px;
+
+        li {
+          a {
+            position: relative;
+
+            &:after {
+              position: absolute;
+              content: "";
+              bottom: 0;
+              left: 0;
+              height: 2px;
+              width: 0;
+              background-color: $primary-color;
+              transition: all ease-in 0.2s;
+            }
+
+            &:hover {
+              &:after {
+                width: 50%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .login-btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+}
