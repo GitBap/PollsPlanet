@@ -11,6 +11,7 @@ body {
   background-color: $background-color;
   color: $text-color;
   font-family: "Jost", sans-serif;
+  overflow: hidden;
 
   // Footer position is always at the bottom
   .website {
