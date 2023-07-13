@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./styles/header.scss";
+import Hamburger from "./Hamburger";
 
 const Header = () => {
+  const [mobileMenu, setMobileMenu] = useState(false);
+
   return (
     <header>
       <div className="container">
@@ -109,6 +112,30 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
           <div className="login-btns">
             <button className="btn">Sign up</button>
             <button className="btn">Sign in</button>
+          </div>
+          <div className="hamburger">
+            <Hamburger mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+          </div>
+          <div
+            className="mobile-menu"
+            style={{
+              right: mobileMenu ? "0" : "-100%",
+            }}
+          >
+            <nav className="nav">
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/contactus">Contact us</Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="login-btns">
+              <button className="btn">Sign up</button>
+              <button className="btn">Sign in</button>
+            </div>
           </div>
         </div>
       </div>

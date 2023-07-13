@@ -1,7 +1,9 @@
 @import "./variables.scss";
 
 header {
+  position: relative;
   padding: 20px 0;
+
   .wrapper {
     display: flex;
     align-items: center;
@@ -55,7 +57,46 @@ header {
     .login-btns {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
+    }
+
+    .mobile-menu {
+      position: absolute;
+      padding: 60px;
+      width: calc(50% - 60px);
+      height: 100vh;
+      top: 100%;
+      background-color: $primary-color;
+
+      transition: all ease 0.5s;
+
+      .nav {
+        display: block;
+        margin: 0;
+        margin-bottom: 40px;
+
+        ul {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      .login-btns {
+        justify-content: center;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav,
+      .login-btns:not(:last-child) {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
     }
   }
 }
