@@ -1,6 +1,7 @@
 const serveysDB = {
   surveys: [
     {
+      id: 1,
       title: "About programm",
       questions: [
         {
@@ -30,6 +31,7 @@ const serveysDB = {
       ],
     },
     {
+      id: 2,
       title: "About programm2",
       questions: [
         {
