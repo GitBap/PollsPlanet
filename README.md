@@ -12,7 +12,7 @@ _Some notes_
 - [Dark Mode](https://dev.to/alexeagleson/how-to-create-a-dark-mode-component-in-react-3ibg)
 - [Language Translation](https://www.npmjs.com/package/i18n)
 
--PLEASE see the demo of the[WireFrame]:(https://my.visme.co/view/ep7vee3y-polls-planet#s1)
+[WireFrames](https://my.visme.co/view/ep7vee3y-polls-planet#s1)
 
 _Reference Survey Companies_ \
 [SurveyMonkey](https://www.surveymonkey.com/) \
