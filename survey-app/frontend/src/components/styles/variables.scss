@@ -7,15 +7,25 @@ $heading-color: #262c34;
 $ligth-color: #ffffff;
 $dark-color: #262c34;
 
+html[data-theme="light"] {
+  --primary-color: #29a587;
+  --background-color: #f2ede6;
+  --text-color: #6b6a69;
+  --button-text-color: #262c34;
+  --heading-color: #262c34;
+  --ligth-color: #ffffff;
+  --dark-color: #262c34;
+}
+
 // Colors for dark mode
 
-// [data-theme="dark"] {
-//   $primary-color: #29a587;
-//   $background-color: #242a32;
-//   $text-color: #acadb0;
-//   $button-text-color: #ffffff;
-//   $heading-color: #ffffff;
-// }
+html[data-theme="dark"] {
+  --primary-color: #29a587;
+  --background-color: #242a32;
+  --text-color: #acadb0;
+  --button-text-color: #ffffff;
+  --heading-color: #ffffff;
+}
 
 // Breakpoints
 // sm	@media (max-width: 640px) {  }

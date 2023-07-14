@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import "./styles/header.scss";
 import Hamburger from "./Hamburger";
 
-const Header = () => {
+const Header = ({ theme, setTheme }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   return (
     <header>
@@ -116,6 +124,7 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
           <div className="hamburger">
             <Hamburger mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
           </div>
+          <button onClick={toggleTheme}>d</button>
           <div
             className="mobile-menu"
             style={{

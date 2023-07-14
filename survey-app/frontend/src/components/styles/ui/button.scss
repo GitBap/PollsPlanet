@@ -4,9 +4,9 @@
   font-family: "Jost", sans-serif;
   padding: 10px 15px;
   font-size: 16px;
-  border: 2px solid $button-text-color;
+  border: 2px solid var(--button-text-color);
   border-radius: 20px;
-  color: $button-text-color;
+  color: var(--button-text-color);
   box-shadow: 2px 4px 0px #acadb0;
   text-transform: uppercase;
   cursor: pointer;

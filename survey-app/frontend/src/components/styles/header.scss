@@ -12,7 +12,7 @@ header {
     .logo-block {
       svg {
         g {
-          fill: $button-text-color;
+          fill: var(--button-text-color);
 
           .circle {
             fill: $primary-color;
