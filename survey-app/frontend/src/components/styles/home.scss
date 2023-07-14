@@ -1,0 +1,44 @@
+@import "./variables.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  padding: 80px 0;
+  text-align: center;
+
+  .typed-out {
+    overflow: hidden;
+    border-right: 0.15em solid $primary-color;
+    white-space: nowrap;
+    animation: typing 1s steps(35, end) forwards;
+    font-size: 2rem;
+    width: 0;
+    max-width: max-content;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      animation: none;
+      width: 100%;
+      white-space: wrap;
+      border-right: none;
+    }
+  }
+
+  p {
+    max-width: 700px;
+    font-size: 1.2em;
+    margin-bottom: 60px;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+}
