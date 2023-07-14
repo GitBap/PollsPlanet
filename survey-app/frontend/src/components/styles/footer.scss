@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+footer {
+  padding: 20px 0;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: $primary-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
