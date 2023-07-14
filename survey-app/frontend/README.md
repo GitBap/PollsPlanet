@@ -1,7 +1,8 @@
 # Frontend part
 
-The basic project structure for frontend
+The basic `project` structure for frontend
 
+```
 frontend/
 ├── public/
 │ ├── assets/ # For images etc.
@@ -20,9 +21,10 @@ frontend/
 │ ├── utils/
 │ │ ├── auth.js # Authentication utility functions
 │ │ └── validation.js # Input validation utility functions
-│ ├── images/ # For images  
+│ ├── images/ # For images
 │ ├── App.jsx # Main component
 │ ├── index.js # Entry point
 │ ├── index.scss # Global CSS styles
 ├── package.json # Frontend dependencies and scripts
 ├── package-lock.json
+```

@@ -2,6 +2,7 @@
 
 The basic project structure for backend
 
+```
 backend/
 ├── config/
 │ ├── config.js # Configuration files (e.g., database credentials, environment variables)
@@ -29,3 +30,4 @@ backend/
 ├── app.js # Express app configuration
 ├── server.js # Server startup file
 └── .env # Environment variables
+```
