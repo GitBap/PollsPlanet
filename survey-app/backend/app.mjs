@@ -1,6 +1,7 @@
 import express from "express";
 import pool from "./db.js";
 import usersAdmin from "./routes/usersAdmin.mjs";
+import polls from "./routes/polls.mjs";
 
 const app = express();
 
@@ -9,6 +10,8 @@ app.use(express.static("public"));
 
 //router entrance for administrators function
 app.use("/api/users", usersAdmin);
+//router entrance for polls
+app.use("/api/polls", polls);
 
 // GET all questions route for participant
 app.get("/participant", async (req, res) => {

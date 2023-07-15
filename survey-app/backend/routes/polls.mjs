@@ -1,22 +1,18 @@
 import express from "express";
 import authorize  from "../middleware/auth.mjs";
 import {
-    getAllUsers,
-    login,
-    deleteUser,
-    updateUser,
-    createUser,
-} from '../services/usersService.mjs'
-
-
+    getAllPolls,
+    updatePoll,
+    createPoll,
+    deletePoll,
+} from '../services/pollsService.mjs'
 
 const router = express.Router();
 
-router.get("/", async(req, res) => {
-    const administrators = {'users': [{'id': 1, 'name': 'json', 'email': 'json@gmail.com'}, 
+router.get("/", (req, res) => {
+    const polls = {'users': [{'id': 1, 'name': 'json', 'email': 'json@gmail.com'}, 
         {'id': 2, 'name': 'David', 'email': 'david@gmail.com'}]}
-    // const administrators = await getAllUsers();
-    res.json(administrators);
+    res.json(polls);
 });
 
 
