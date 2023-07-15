@@ -28,11 +28,9 @@ app.post("/participant/", async (req, res) => {
   try {
     const { survey_id, answer } = req.body;
     const response = [survey_id, answer];
-    const insertResponse = await pool.query(
-      "INSERT INTO answers (survey_id, answer) VALUES($1, $2) RETURNING *",
-      [response]
-    );
-    res.json(insertResponse.rows[0]);
+    const insertText =  "INSERT INTO answers (survey_id, answer) VALUES($1, $2) RETURNING *;"
+    const {rows} = await pool.query(insertText, response);
+    res.status(201).json(rows[0]);
   } catch (err) {
     console.error(err.message);
   }
