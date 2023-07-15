@@ -54,7 +54,8 @@ header {
       }
     }
 
-    .login-btns {
+    .login-btns,
+    .control-btns {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -68,6 +69,7 @@ header {
       height: 100vh;
       top: 100%;
       background-color: var(--primary-color);
+      z-index: 10;
 
       transition: all ease 0.5s;
 
