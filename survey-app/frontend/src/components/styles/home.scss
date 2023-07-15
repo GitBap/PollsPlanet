@@ -11,7 +11,7 @@
 
   .typed-out {
     overflow: hidden;
-    border-right: 0.15em solid $primary-color;
+    border-right: 0.15em solid var(--primary-color);
     white-space: nowrap;
     animation: typing 1s steps(35, end) forwards;
     font-size: 2rem;

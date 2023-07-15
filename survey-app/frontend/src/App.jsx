@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ContactUs from "./components/ContactUs";
 import NotFound from "./components/NotFound";
+import Surveys from "./components/Surveys";
+import Survey from "./components/Survey";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -21,6 +23,8 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/surveys" element={<Surveys />} />
+          <Route path="/surveys/:id" element={<Survey />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

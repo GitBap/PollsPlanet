@@ -1,0 +1,17 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.surveys {
+  padding: 20px 0;
+
+  h2 {
+    position: relative;
+    max-width: max-content;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+
+    &::after {
+      @include border-bottom;
+    }
+  }
+}

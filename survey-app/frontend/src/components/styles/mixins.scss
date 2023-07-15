@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+@mixin border-bottom {
+  position: absolute;
+  content: "";
+  bottom: -4px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: var(--primary-color);
+}

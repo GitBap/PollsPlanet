@@ -1,8 +1,8 @@
-const serveysDB = {
+export const serveysDB = {
   surveys: [
     {
       id: 1,
-      title: "About programm",
+      title: "About #1",
       questions: [
         {
           id: 1,
@@ -12,8 +12,8 @@ const serveysDB = {
         },
         {
           id: 2,
-          description: "What your favorite language?",
-          answers: ["JavaScript", "Java", "C++", "C#"],
+          description: "What your favorite language to speak?",
+          answers: ["English", "Franch", "Ukrainian"],
           type: "radio",
         },
         {
@@ -32,7 +32,7 @@ const serveysDB = {
     },
     {
       id: 2,
-      title: "About programm2",
+      title: "About #2",
       questions: [
         {
           id: 1,
