@@ -24,7 +24,12 @@ const RangeAnswer = () => {
         min={1}
         max={10}
         sx={{
-          color: primaryColor,
+          color:
+            count < 4
+              ? dangerColor
+              : count >= 4 && count < 8
+              ? warningColor
+              : primaryColor,
           "& .MuiSlider-valueLabelOpen": {
             backgroundColor: labelInputColor,
             width: "0px",
