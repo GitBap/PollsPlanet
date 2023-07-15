@@ -1,11 +1,13 @@
-import pg from 'pg'
+import pg from "pg";
+import dotenv from "dotenv";
+dotenv.config();
 
 const pool = new pg.Pool({
-  host: "localhost",
+  host: process.env.DATABASE_HOST,
   port: 5432,
-  database: "polls_planet",
-  user: "postgres",
-  password: "password",
+  database: process.env.DATABASE,
+  user: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
 });
 
 export default pool;
