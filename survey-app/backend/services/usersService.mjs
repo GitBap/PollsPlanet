@@ -1,12 +1,14 @@
-// import { db } from "../db.mjs";
+import pool from "../db.js";
 
 export async function getAllUsers() {
-    const users = [];
-    return users;
+    const {rows} = await pool.query("select * from users;");
+    return rows;
 }
 
 export async function createUser(user) {
     const newUser = { ...user }; 
+    const {rowCount} = await pool.query("insert into users(first_name,password,email) values('david', '001','david@gmail.com');")
+    console.log('result', rowCount)
     return newUser;
 }
 
