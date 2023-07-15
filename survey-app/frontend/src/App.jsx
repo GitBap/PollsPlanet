@@ -13,6 +13,12 @@ const App = () => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
+    const receiveTheme = window.localStorage.getItem("theme");
+    if (receiveTheme !== null) setTheme(JSON.parse(receiveTheme));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("theme", JSON.stringify(theme));
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
