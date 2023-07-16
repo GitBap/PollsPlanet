@@ -1,6 +1,9 @@
 @import "./variables.scss";
 
 .survey {
+  max-width: 600px;
+  margin: 0 auto;
+
   form {
     display: flex;
     flex-direction: column;
@@ -8,6 +11,8 @@
     .survey-title {
       text-transform: none;
       text-align: center;
+      font-size: 1.2em;
+      font-weight: 500;
       margin-bottom: 20px;
     }
 

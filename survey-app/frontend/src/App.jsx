@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div className="website">
       <Header theme={theme} setTheme={setTheme} />
-      <main className="container">
+      <main>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/contactus" element={<ContactUs />} />

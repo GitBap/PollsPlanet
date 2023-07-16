@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Survey from "./Survey";
+
+import { getQuestions } from "../utils/getQuestions";
 
 import "./styles/surveys.scss";
 
 const Surveys = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    getQuestions(setIsLoading, setQuestions);
+  }, []);
+
   return (
     <section className="surveys">
-      <h2>Our Surveys</h2>
-      <div className="wrapper">
-        <Survey />
+      <div className="container">
+        <h2>Our Surveys</h2>
+        <div className="wrapper">
+          {isLoading ? (
+            <h3 className="loading">Loading...</h3>
+          ) : (
+            <Survey questions={questions} />
+          )}
+        </div>
       </div>
     </section>
   );

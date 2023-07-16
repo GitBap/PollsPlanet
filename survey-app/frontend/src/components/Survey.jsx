@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RangeAnswer from "./RangeAnswer";
 
 import "./styles/survey.scss";
 
-const Survey = () => {
-  const [questions, setQuestions] = useState([]);
-
-  // FIXME: After refresh waiting a data
-  useEffect(() => {
-    (async () => {
-      const fetchQuestions = await fetch("http://localhost:3001/participant");
-
-      const questions = await fetchQuestions.json();
-      setQuestions(questions);
-    })();
-  }, []);
-
+const Survey = ({ questions }) => {
   return (
     <section className="survey">
       <form>
