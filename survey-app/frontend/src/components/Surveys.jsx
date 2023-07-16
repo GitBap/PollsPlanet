@@ -13,12 +13,14 @@ const Surveys = () => {
     getQuestions(setIsLoading, setQuestions);
   }, []);
 
+  console.log(questions);
+
   return (
     <section className="surveys">
       <div className="container">
         <h2>Our Surveys</h2>
         <div className="wrapper">
-          {isLoading ? (
+          {isLoading || questions.length === 0 ? (
             <h3 className="loading">Loading...</h3>
           ) : (
             <Survey questions={questions} />
