@@ -18,6 +18,7 @@ const RangeAnswer = () => {
       <Slider
         className="answer-range"
         defaultValue={1}
+        value={count}
         valueLabelDisplay="auto"
         step={1}
         marks
