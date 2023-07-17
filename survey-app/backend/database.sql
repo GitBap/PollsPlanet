@@ -18,7 +18,7 @@ CREATE TABLE QUESTIONS (
     id SERIAL PRIMARY KEY,
     -- tenant_id VARCHAR(255) NOT NULL UNIQUE,
     survey_id INT NOT NULL,
-    question_id INT NOT NULL,
+    question_id INT NOT NULL UNIQUE,
     question TEXT NOT NULL,
     -- type VARCHAR(255) NOT NULL, -- boolean, multiple_choice, text
     -- language VARCHAR(10) NOT NULL, -- english, french
@@ -50,7 +50,7 @@ CREATE TABLE ANSWERS (
     question_id INT NOT NULL,
     answer VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id)
+    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id) ,
     FOREIGN KEY (question_id) REFERENCES QUESTIONS(question_id)
 );
 
