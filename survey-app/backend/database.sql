@@ -50,7 +50,7 @@ CREATE TABLE ANSWERS (
     question_id INT NOT NULL,
     answer VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id),
+    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id)
     FOREIGN KEY (question_id) REFERENCES QUESTIONS(question_id)
 );
 
