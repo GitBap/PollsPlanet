@@ -1,6 +1,7 @@
 import express from "express";
 import pool from "./db.js";
 import usersAdmin from "./routes/usersAdmin.mjs";
+import { participantRouter } from "./routes/participantRoutes.mjs";
 import polls from "./routes/polls.mjs";
 
 const app = express();
@@ -14,12 +15,14 @@ app.use((req, res, next) => {
   next();
 });
 
-//router entrance for administrators function
+// router entrance for participant routes
+app.use("/api/participant", participantRouter);
+// router entrance for administrator routes
 app.use("/api/users", usersAdmin);
-//router entrance for polls
+// router entrance for polls routes
 app.use("/api/polls", polls);
 
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`Server is started and listenning at port: ${PORT}`);
+  console.log(`Server is operational on port: ${PORT}`);
 });

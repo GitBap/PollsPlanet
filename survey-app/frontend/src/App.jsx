@@ -15,7 +15,7 @@ import Login from "./components/Login";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     const receiveTheme = window.localStorage.getItem("theme");

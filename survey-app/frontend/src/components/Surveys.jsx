@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Survey from "./Survey";
 
-import { getQuestions } from "../utils/getQuestions";
+import { getQuestions } from "../utils/fetchDataFromDB";
 
 import "./styles/surveys.scss";
 
