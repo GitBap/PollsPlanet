@@ -13,8 +13,6 @@ const Surveys = () => {
     getQuestions(setIsLoading, setQuestions);
   }, []);
 
-  console.log(questions);
-
   return (
     <section className="surveys">
       <div className="container">

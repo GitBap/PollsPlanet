@@ -17,6 +17,7 @@
     font-size: 2rem;
     width: 0;
     max-width: max-content;
+    margin: 0 auto;
     margin-bottom: 20px;
 
     @media (max-width: 768px) {
@@ -39,7 +40,8 @@
 
   form {
     position: relative;
-    width: 300px;
+    width: 260px;
+    margin: 0 auto;
 
     input {
       width: 100%;
