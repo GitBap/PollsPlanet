@@ -43,7 +43,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
 
             <Route path="/surveys" element={isAuthenticated && <Surveys />} />
-            {/* <Route path="/surveys/:id" element={<Survey />} /> */}
+            <Route path="/surveys/:id" element={<Survey />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
