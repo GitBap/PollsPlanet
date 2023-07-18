@@ -62,7 +62,7 @@ const Login = () => {
               {isValidate.showInvalidEmail && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
-                  <span>Email is not valid</span>
+                  <span>Invalid Email</span>
                 </p>
               )}
             </div>
@@ -85,7 +85,7 @@ const Login = () => {
               {isValidate.showInvalidPassword && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
-                  <span>Password is not valid</span>
+                  <span>Invalid Password</span>
                 </p>
               )}
             </div>

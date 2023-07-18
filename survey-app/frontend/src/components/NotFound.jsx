@@ -8,7 +8,7 @@ const NotFound = () => {
     <section className="not-found">
       <div className="container">
         <p className="error-text">404</p>
-        <h2>Seems like you have lost</h2>
+        <h2>Oops :)</h2>
         <p>
           You can <Link to={"/"}>go to the main page</Link> or try to{" "}
           <Link to={"/contactus"}> write to us</Link>.

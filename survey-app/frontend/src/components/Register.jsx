@@ -29,11 +29,11 @@ const Register = () => {
 
   const validate =
     userInfo.email &&
-    !isValidate.showInvalidEmail &&
-    !isValidate.showInvalidPassword &&
+    isValidate.showInvalidEmail &&
+    isValidate.showInvalidPassword &&
     userInfo.password === userInfo.confirmPassword &&
-    userInfo.name.length >= 2 &&
-    userInfo.password.length > 6;
+    userInfo.name.length >= 4 &&
+    userInfo.password.length > 8;
 
   const handleInput = (event) => {
     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
