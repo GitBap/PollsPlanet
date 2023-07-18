@@ -55,7 +55,7 @@ const Register = () => {
               console.log(userInfo);
             }}
           >
-            <h2 className="form-title">Create account</h2>
+            <h2 className="form-title">Create an Account</h2>
             <div className="input-box">
               <PersonOutlineOutlinedIcon />
               <input

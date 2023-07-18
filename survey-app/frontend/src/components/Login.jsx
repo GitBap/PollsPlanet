@@ -40,7 +40,7 @@ const Login = () => {
               console.log(userInfo);
             }}
           >
-            <h2 className="form-title">Create account</h2>
+            <h2 className="form-title">Sign In</h2>
             <div className="input-box">
               <EmailOutlinedIcon />
               <input

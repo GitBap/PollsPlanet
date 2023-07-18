@@ -31,7 +31,7 @@ const Home = () => {
             }}
             type="text"
             value={surveyToken}
-            placeholder="Your token here..."
+            placeholder="Enter your token here..."
           />
           <button className="btn" type="submit">
             Go
