@@ -17,17 +17,17 @@
     background-color: var(--primary-color);
   }
 
-  // &[disabled] {
-  //   color: var(--text-color);
-  //   border-color: var(--text-color);
-  //   cursor: no-drop;
+  &[disabled] {
+    color: var(--text-color);
+    border-color: var(--text-color);
+    cursor: no-drop;
 
-  //   &:hover {
-  //     color: var(--text-color);
-  //     border-color: var(--text-color);
-  //     background-color: inherit;
-  //   }
-  // }
+    &:hover {
+      color: var(--text-color);
+      border-color: var(--text-color);
+      background-color: inherit;
+    }
+  }
 }
 
 .toggle-mode {

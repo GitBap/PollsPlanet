@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import SEO from "./SEO";
 
 import "./styles/home.scss";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [userToken, setUserToken] = useState("");
+  const [surveyToken, setSurveyToken] = useState("");
 
   return (
     <section className="home">
@@ -16,15 +16,21 @@ const Home = () => {
           Welcome to our survey website, where your opinions count! Start
           sharing your perspectives today and make a meaningful impact with us.
         </p>
-        <button className="btn">Get started</button>
+        <Link to={"/register"} className="btn">
+          Get started
+        </Link>
         <p className="token-title">Do you have a token?</p>
-        <form action={`http://localhost:3000/survey/${userToken}`} method="get">
+        <form
+          action={`http://localhost:3000/survey/${surveyToken}`}
+          method="get"
+        >
           <input
+            className="input-text"
             onChange={(event) => {
-              setUserToken(event.target.value);
+              setSurveyToken(event.target.value);
             }}
             type="text"
-            value={userToken}
+            value={surveyToken}
             placeholder="Your token here..."
           />
           <button className="btn" type="submit">
