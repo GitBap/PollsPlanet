@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Switch } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -24,17 +25,19 @@ const App = () => {
 
   return (
     <div className="website">
-      <Header theme={theme} setTheme={setTheme} />
-      <main>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/surveys" element={<Surveys />} />
-          <Route path="/surveys/:id" element={<Survey />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <HelmetProvider>
+        <Header theme={theme} setTheme={setTheme} />
+        <main>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/surveys" element={<Surveys />} />
+            <Route path="/surveys/:id" element={<Survey />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </HelmetProvider>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SEO from "./SEO";
 
 import "./styles/home.scss";
 import { Link } from "@mui/material";
@@ -8,6 +9,7 @@ const Home = () => {
 
   return (
     <section className="home">
+      <SEO />
       <div className="container">
         <h1 className="typed-out">Create polls at the click of a button</h1>
         <p>
