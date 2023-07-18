@@ -20,12 +20,19 @@ router.get("/", async(req, res) => {
 });
 
 
-router.put("/:id",(req, res) => {
+router.put("/:id",async(req, res) => {
     const { id } = req.params;
-    const administratorsUpdate = req.body;
-
-    res.json(administratorsUpdate);
-
+    const { name, email, phone, address } = req.body;
+    const { rows } = await db.query(
+      "UPDATE users SET name = $1, species = $2, age = $3, enclosure_id = $4 WHERE id = $5 RETURNING *;",
+      [name, email, phone, address ]
+    );
+  
+    if (rows.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.json(rows[0]);
+    }
 });
 
 router.post("/register", async(req, res) => {
