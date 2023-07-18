@@ -7,7 +7,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 import "./styles/header.scss";
 
-const Header = ({ theme, setTheme }) => {
+const Header = ({ theme, setTheme, isAuthenticated }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const toggleTheme = () => {
@@ -120,14 +120,20 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
               <li>
                 <Link to="/contactus">Contact us</Link>
               </li>
-              <li>
-                <Link to="/surveys">Surveys</Link>
-              </li>
+              {isAuthenticated && (
+                <li>
+                  <Link to="/surveys">Surveys</Link>
+                </li>
+              )}
             </ul>
           </nav>
           <div className="login-btns">
-            <button className="btn">Sign up</button>
-            <button className="btn">Sign in</button>
+            <Link className="btn" to={"/register"}>
+              Sign up
+            </Link>
+            <Link className="btn" to={"/login"}>
+              Sign in
+            </Link>
           </div>
           <div className="control-btns">
             <Hamburger mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
@@ -153,14 +159,20 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
                 <li>
                   <Link to="/contactus">Contact us</Link>
                 </li>
-                <li>
-                  <Link to="/surveys">Surveys</Link>
-                </li>
+                {isAuthenticated && (
+                  <li>
+                    <Link to="/surveys">Surveys</Link>
+                  </li>
+                )}
               </ul>
             </nav>
             <div className="login-btns">
-              <button className="btn">Sign up</button>
-              <button className="btn">Sign in</button>
+              <Link className="btn" to={"/register"}>
+                Sign up
+              </Link>
+              <Link className="btn" to={"/login"}>
+                Sign in
+              </Link>
             </div>
           </div>
         </div>

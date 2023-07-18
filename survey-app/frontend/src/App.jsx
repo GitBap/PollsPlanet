@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -8,9 +8,12 @@ import ContactUs from "./components/ContactUs";
 import NotFound from "./components/NotFound";
 import Surveys from "./components/Surveys";
 import Survey from "./components/Survey";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const receiveTheme = window.localStorage.getItem("theme");
@@ -24,13 +27,20 @@ const App = () => {
 
   return (
     <div className="website">
-      <Header theme={theme} setTheme={setTheme} />
+      <Header
+        theme={theme}
+        setTheme={setTheme}
+        isAuthenticated={isAuthenticated}
+      />
       <main>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/surveys" element={<Surveys />} />
-          <Route path="/surveys/:id" element={<Survey />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/surveys" element={isAuthenticated && <Surveys />} />
+          {/* <Route path="/surveys/:id" element={<Survey />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
