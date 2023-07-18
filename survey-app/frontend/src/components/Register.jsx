@@ -100,7 +100,7 @@ const Register = () => {
               {isValidate.showInvalidEmail && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
-                  <span>Email is not valid</span>
+                  <span>Invalid email</span>
                 </p>
               )}
             </div>
@@ -123,7 +123,7 @@ const Register = () => {
               {isValidate.showInvalidPassword && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
-                  <span>Password is not valid</span>
+                  <span>Invalid email</span>
                 </p>
               )}
             </div>
@@ -165,9 +165,7 @@ const Register = () => {
           </form>
           <div className="greeting">
             <h3>Welcome Back!</h3>
-            <p>
-              To keep connected with us please login with your personal info.
-            </p>
+            <p>To keep connected with us please login with your credentials.</p>
             <Link className="btn" to="/login">
               Sign In
             </Link>

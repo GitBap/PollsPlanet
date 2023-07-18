@@ -95,7 +95,7 @@ const Login = () => {
           </form>
           <div className="greeting">
             <h3>Hello, friend!</h3>
-            <p>Enter your personal details and start journey with us.</p>
+            <p>Enter your personal details and start your journey with us.</p>
             <Link className="btn" to="/register">
               Sign Up
             </Link>
