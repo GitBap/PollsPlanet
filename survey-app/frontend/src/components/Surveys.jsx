@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Survey from "./Survey";
 import { Link } from "react-router-dom";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
-import { getQuestions, getSurveys } from "../utils/fetchDataFromDB";
+import { getSurveys } from "../utils/fetchDataFromDB";
 
 import "./styles/surveys.scss";
 
@@ -16,17 +16,25 @@ const Surveys = () => {
   return (
     <section className="surveys">
       <div className="container">
-        <h2>Our Surveys</h2>
+        <div className="heading">
+          <h2>Our Surveys</h2>
+          <button className="btn add">
+            <span className="tooltip">Create survey</span>
+            <AddOutlinedIcon />
+          </button>
+        </div>
         <div className="wrapper">
           {surveys.map((survey, index) => {
             return (
-              <div key={`survay-${index}`}>
-                <h3>
-                  {survey.title} with id {survey.id}
-                </h3>
-                <Link to={`/surveys/${survey.id}`}>Open</Link>
-                <button>Edit</button>
-                <button>Delete</button>
+              <div className="survay-item" key={`survay-${index}`}>
+                <h3>{survey.title}</h3>
+                <div className="control-btns">
+                  <Link className="btn open" to={`/surveys/${survey.id}`}>
+                    Open
+                  </Link>
+                  <button className="btn edit">Edit</button>
+                  <button className="btn delete">Delete</button>
+                </div>
               </div>
             );
           })}

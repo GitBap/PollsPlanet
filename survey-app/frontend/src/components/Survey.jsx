@@ -16,7 +16,6 @@ const Survey = () => {
   const [isLoading, setIsLoading] = useState(false);
   // FIXME: create useContext
   const [surveys, setSurvays] = useState([]);
-  console.log(surveys[id - 1]);
 
   useEffect(() => {
     getQuestions(setIsLoading, setQuestions);
