@@ -1,0 +1,42 @@
+@import "./variables.scss";
+
+.container {
+  padding: 20px 0;
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+
+    h1 {
+      color: var(--button-text-color);
+      text-align: center;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: var(--button-text-color);
+        margin-bottom: 5px;
+      }
+
+      .input-text {
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-block {
+      width: 100%;
+    }
+  }
+}
