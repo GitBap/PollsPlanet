@@ -1,8 +1,7 @@
 import express from "express";
-import pool from "./db.js";
-import usersAdmin from "./routes/usersAdmin.mjs";
-import { participantRouter } from "./routes/participantRoutes.mjs";
-import polls from "./routes/polls.mjs";
+import { usersAdmin } from "./routes/usersAdmin.mjs";
+import { participantRouter } from "./routes/participants.mjs";
+import { surveyRouter } from "./routes/surveys.mjs";
 
 const app = express();
 
@@ -17,12 +16,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// router entrance for participant routes
-app.use("/api/participant", participantRouter);
 // router entrance for administrator routes
 app.use("/api/users", usersAdmin);
-// router entrance for polls routes
-app.use("/api/polls", polls);
+
+// router entrance for participant routes
+app.use("/api/participant", participantRouter);
+
+// router entrance for surveys routes
+app.use("/api/surveys", surveyRouter);
+
+// router entrance for admin resgistration routes
+app.use("/api/admin", usersAdmin);
 
 const PORT = 3001;
 app.listen(PORT, () => {

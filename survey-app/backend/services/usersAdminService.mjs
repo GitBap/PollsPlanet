@@ -8,7 +8,7 @@ export async function getAllUsers() {
 export async function createUser(user) {
   const newUser = { ...user };
   const { rowCount } = await pool.query(
-    "INSERT INTO users(first_name, password, email) VALUES('david', '001','david@gmail.com');"
+    "INSERT INTO users(name, email, password) VALUES($1, $2, $3);"
   );
   console.log("result", rowCount);
   return newUser;
