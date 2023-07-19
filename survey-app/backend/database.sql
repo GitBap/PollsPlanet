@@ -117,28 +117,26 @@ INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 9, 'On a scale of 1-10, how willing are you learn about programming?');
 INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 10, 'On a scale of 1-10, how much do you like to eat?');
-
--- INSERT for questions
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 10, 'what is your level happiness?');
+VALUES (2, 11, 'what is your level happiness?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 11, 'how hungry are you?' );
+VALUES (2, 12, 'how hungry are you?' );
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 12, 'how rich are you?');
+VALUES (2, 13, 'how rich are you?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 13, 'how much do you like surveys?');
+VALUES (2, 14, 'how much do you like surveys?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 14, 'how much do you know programming?');
+VALUES (2, 15, 'how much do you know programming?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 15,'how much do you like studying?' );
+VALUES (2, 16,'how much do you like studying?' );
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 16, 'how likely would recommend this survey to your friend?');
+VALUES (2, 17, 'how likely would recommend this survey to your friend?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 17, 'how thirsty are you?');
+VALUES (2, 18, 'how thirsty are you?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 18, 'how willing are you learn about programming?');
+VALUES (2, 19, 'how willing are you learn about programming?');
 INSERT INTO questions (survey_id, question_id, question)
-VALUES (2, 19, 'how much do you like to eat?');
+VALUES (2, 20, 'how much do you like to eat?');
 
 -- INSERT for users
 INSERT INTO users (name, email, password)

@@ -37,6 +37,7 @@ const router = express.Router();
 //   }
 // });
 
+// user/admin sign up route
 router.post("/register", async (req, res) => {
   const { name, password, email } = req.body;
 
@@ -47,29 +48,51 @@ router.post("/register", async (req, res) => {
   res.status(201).json(newUser.rows[0]);
 });
 
-// router.post("/login", async (req, res, next) => {
-//   try {
-//     const { email, password } = req.body;
+// user/admin login route
+router.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
 
-//     // Fetch the user with the provided email
-//     const userResult = await pool.query(
-//       "SELECT * FROM users(email, password) WHERE email = $1 AND password = $2;",
-//       [email, password]
-//     );
+    // Fetch the user with the provided email
+    const userResult = await pool.query(
+      "SELECT email, password FROM users WHERE email = $1 AND password = $2;",
+      [email, password]
+    );
 
-//     const user = userResult.rows[0];
+    const user = userResult.rows[0];
 
-//     // If no such user exists, or the password is incorrect, send an error
-//     if (!user || !(await bcrypt.compare(password, user.password_hash))) {
-//       res.status(401).json({ message: "Invalid email or password" });
-//       return;
-//     }
+    // compare the password and email with the password & email stored in the database
+    if (
+      !user ||
+      !(
+        userResult.rows[0].password === password &&
+        userResult.rows[0].email === email
+      )
+    ) {
+      res.status(401).json({ message: "Invalid email or password" });
+    } else {
+      // Send a response indicating successful login
+      res.status(200).json({ message: "Successful Login" });
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
-//     // Send a response indicating successful login
-//     res.status(200).json({ message: "User logged in successfully" });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+// delete route for user/admin to delete their account
+router.delete("/delete", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const deleteUser = await pool.query(
+      "DELETE FROM users WHERE email = $1 RETURNING *;",
+      [email]
+    );
+    res
+      .status(200)
+      .json({ message: `User with email = ${email} has been deleted` });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 export const usersAdmin = router;

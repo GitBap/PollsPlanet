@@ -25,7 +25,7 @@ app.use("/api/participant", participantRouter);
 // router entrance for surveys routes
 app.use("/api/surveys", surveyRouter);
 
-// router entrance for admin resgistration routes
+// router entrance for admin resgistration/login routes
 app.use("/api/admin", usersAdmin);
 
 const PORT = 3001;
