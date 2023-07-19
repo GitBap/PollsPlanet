@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useImmer } from "use-immer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import * as EmailValidator from "email-validator";
+import { getUsers } from "../utils/fetchDataFromDB";
 
 import "./styles/login.scss";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
+  const [users, setUsers] = useImmer([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUsers(setUsers);
+  }, []);
+
   const [userInfo, setUserInfo] = useImmer({
     email: "",
     password: "",
@@ -37,7 +46,15 @@ const Login = () => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              console.log(userInfo);
+              const userWithEmail = users.find(
+                (item) => item.email == userInfo.email
+              );
+              if (userWithEmail?.password === userInfo?.password) {
+                setIsAuthenticated((prev) => !prev);
+                navigate("/surveys");
+              } else {
+                return;
+              }
             }}
           >
             <h2 className="form-title">Sign In</h2>

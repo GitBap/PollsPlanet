@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import Hamburger from "./Hamburger";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -7,8 +7,10 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 import "./styles/header.scss";
 
-const Header = ({ theme, setTheme, isAuthenticated }) => {
+const Header = ({ theme, setTheme, isAuthenticated, setIsAuthenticated }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleTheme = () => {
     if (theme === "light") {
@@ -127,14 +129,28 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
               )}
             </ul>
           </nav>
-          <div className="login-btns">
-            <Link className="btn" to={"/register"}>
-              Sign up
-            </Link>
-            <Link className="btn" to={"/login"}>
-              Sign in
-            </Link>
-          </div>
+          {isAuthenticated ? (
+            <div>
+              <button
+                className="btn"
+                onClick={() => {
+                  setIsAuthenticated((prev) => !prev);
+                  navigate("/");
+                }}
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <div className="login-btns">
+              <Link className="btn" to={"/register"}>
+                Sign up
+              </Link>
+              <Link className="btn" to={"/login"}>
+                Sign in
+              </Link>
+            </div>
+          )}
           <div className="control-btns">
             <Hamburger mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
             <button className="toggle-mode" onClick={toggleTheme}>
