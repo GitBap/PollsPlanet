@@ -15,7 +15,8 @@ import Login from "./components/Login";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // FIXME: try to store into LocalStorage or cookie
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const receiveTheme = window.localStorage.getItem("theme");
@@ -34,13 +35,24 @@ const App = () => {
           theme={theme}
           setTheme={setTheme}
           isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
         />
         <main>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/contactus" element={<ContactUs />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/register"
+              element={!isAuthenticated && <Register />}
+            />
+            <Route
+              path="/login"
+              element={
+                !isAuthenticated && (
+                  <Login setIsAuthenticated={setIsAuthenticated} />
+                )
+              }
+            />
 
             <Route path="/surveys" element={isAuthenticated && <Surveys />} />
             <Route path="/surveys/:id" element={<Survey />} />
