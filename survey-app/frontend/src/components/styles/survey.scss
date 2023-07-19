@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./mixins.scss";
 
 .survey {
   max-width: 600px;
@@ -9,11 +10,18 @@
     flex-direction: column;
 
     .survey-title {
+      position: relative;
       text-transform: none;
       text-align: center;
       font-size: 1.2em;
       font-weight: 500;
+      max-width: max-content;
+      margin: 0 auto;
       margin-bottom: 20px;
+
+      &::after {
+        @include border-bottom;
+      }
     }
 
     .survey-item {

@@ -21,7 +21,7 @@ const Home = () => {
         </Link>
         <p className="token-title">Do you have a token?</p>
         <form
-          action={`http://localhost:3000/survey/${surveyToken}`}
+          action={`http://localhost:3000/surveys/${surveyToken}`}
           method="get"
         >
           <input
