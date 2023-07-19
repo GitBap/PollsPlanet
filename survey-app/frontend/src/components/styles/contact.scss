@@ -8,7 +8,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 500px;
-    margin: 20px 0;
+    margin: 0 auto;  // This will center the block
 
     h1 {
       color: var(--button-text-color);
@@ -27,6 +27,12 @@
       .input-text {
         margin-bottom: 20px;
       }
+
+      textarea.input-text {
+        height: 150px;
+        resize: none; // Add this line
+      }
+      
 
       .btn {
         margin-bottom: 20px;
