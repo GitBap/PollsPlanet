@@ -11,7 +11,7 @@ CREATE TABLE SURVEYS (
     id SERIAL PRIMARY KEY,
     -- tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
     title VARCHAR(255) NOT NULL,
-    -- description VARCHAR(255) NOT NULL,
+    -- description TEXT NOT NULL,
     -- category VARCHAR(255) NOT NULL, -- programming, education, etc
     -- language VARCHAR(10) NOT NULL, -- english, french
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
@@ -31,18 +31,18 @@ CREATE TABLE QUESTIONS (
 
 -- CREATE TABLE USERS_SURVEYS_LINK (
 --     id SERIAL PRIMARY KEY,
---     survey_id INT NOT NULL,
---     question_id INT NOT NULL,
---     FOREIGN KEY (survey_id) REFERENCES SURVEYS(id),
---     FOREIGN KEY (question_id) REFERENCES QUESTIONS(id)
+--     tenant_id INT NOT NULL,
+--     user_name INT NOT NULL,
+--     FOREIGN KEY (tenant_id) REFERENCES SURVEYS(tenant_id),
+--     FOREIGN KEY (user_name) REFERENCES USERS(user_name)
 -- );
 
--- CREATE TABLE OFFERED_ANSWERS (
+-- CREATE TABLE OFFERED_RESPONSES (
 --     id SERIAL PRIMARY KEY,
 --     question_id INT NOT NULL,
 --     answer VARCHAR(255) NOT NULL,
---     -- type VARCHAR(255) NOT NULL, -- boolean, multiple_choice, integer
---     -- language VARCHAR(10) NOT NULL, -- english, french
+--     type VARCHAR(255) NOT NULL, -- boolean, multiple_choice, integer
+--     language VARCHAR(10) NOT NULL, -- english, french
 --     FOREIGN KEY (question_id) REFERENCES QUESTIONS(id)
 -- );
 
@@ -59,28 +59,28 @@ CREATE TABLE ANSWERS (
 
 CREATE TABLE USERS (
     id SERIAL PRIMARY KEY,
---     tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
+    -- tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
     name VARCHAR(255) NOT NULL,
---     first_name VARCHAR(255) NOT NULL,
---     middle_name VARCHAR(255),
---     last_name VARCHAR(255) NOT NULL,
---     user_name VARCHAR(255) NOT NULL,
+    -- first_name VARCHAR(255) NOT NULL,
+    -- middle_name VARCHAR(255),
+    -- last_name VARCHAR(255) NOT NULL,
+    -- user_name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE
     -- role VARCHAR(32) NOT NULL, -- admin, participant
---     address VARCHAR(255) NOT NULL,
---     city VARCHAR(64) NOT NULL,
---     state_province VARCHAR(64) NOT NULL,
---     zip_postal VARCHAR(64) NOT NULL,
---     country VARCHAR(64) NOT NULL,
---     phone_number VARCHAR(64) NOT NULL,
---     created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    -- address VARCHAR(255) NOT NULL,
+    -- city VARCHAR(64) NOT NULL,
+    -- state_province VARCHAR(64) NOT NULL,
+    -- zip_postal VARCHAR(64) NOT NULL,
+    -- country VARCHAR(64) NOT NULL,
+    -- phone_number VARCHAR(64) NOT NULL,
+    -- created_at TIMESTAMP NOT NULL DEFAULT NOW()
     -- CHECK (role IN ('admin', 'participant'))
---     CHECK (IF role = 'participant' THEN user_name IS NULL ENDIF)
+    -- CHECK (IF role = 'participant' THEN user_name IS NULL ENDIF)
 );
 
--- -- user sessions; something to work on later
--- CREATE TABLE USER_SESSIONS (
+--     user sessions; something to work on later
+--     CREATE TABLE USER_SESSIONS (
 --     id SERIAL PRIMARY KEY,
 --     session_id VARCHAR(255) UNIQUE NOT NULL,
 --     created_at TIMESTAMP NOT NULL DEFAULT NOW()
