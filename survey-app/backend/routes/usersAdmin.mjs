@@ -11,69 +11,6 @@ import authorize from "../middleware/auth.mjs";
 
 const router = express.Router();
 
-// router.get("/", async (req, res) => {
-//   const administrators = {
-//     users: [
-//       { id: 1, name: "json", email: "json@gmail.com" },
-//       { id: 2, name: "David", email: "david@gmail.com" },
-//     ],
-//   };
-//   // const administrators = await pool.query("SELECT * FROM users;");
-//   res.json(administrators);
-// });
-
-router.get("/", async (req, res) => {
-  try {
-    const allUsers = await pool.query("SELECT * FROM users");
-    res.json(allUsers.rows);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-// router.put("/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { name, email } = req.body;
-//   const { rows } = await db.query(
-//     "UPDATE users SET name = $1, species = $2, age = $3, enclosure_id = $4 WHERE id = $5 RETURNING *;",
-//     [name, email]
-//   );
-
-//   if (rows.length === 0) {
-//     res.sendStatus(404);
-//   } else {
-//     res.json(rows[0]);
-//   }
-// });
-
-router.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, email } = req.body;
-    const updateUser = await pool.query(
-      "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
-      [name, email, id]
-    );
-    res.json(updateUser.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, email } = req.body;
-    const updateUser = await pool.query(
-      "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
-      [name, email, id]
-    );
-    res.json(updateUser.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
 // user/admin sign up route
 router.post("/register", async (req, res) => {
   const { name, password, email } = req.body;
@@ -83,6 +20,31 @@ router.post("/register", async (req, res) => {
     [name, password, email]
   );
   res.status(201).json(newUser.rows[0]);
+});
+
+// get all users
+router.get("/", async (req, res) => {
+  try {
+    const allUsers = await pool.query("SELECT * FROM users");
+    res.json(allUsers.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// edit user
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email } = req.body;
+    const updateUser = await pool.query(
+      "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
+      [name, email, id]
+    );
+    res.json(updateUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 // user/admin login route
@@ -132,26 +94,15 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deleted = await deleteUser(id);
-    res.json({ success: deleted });
-  } catch (err) {
-    console.error(err.message);
-    res.sendStatus(500);
-  }
-});
-
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await login(email, password);
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.sendStatus(500);
-  }
-});
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const deleted = await deleteUser(id);
+//     res.json({ success: deleted });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.sendStatus(500);
+//   }
+// });
 
 export const usersAdmin = router;
