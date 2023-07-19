@@ -13,15 +13,24 @@ export const getQuestions = async (setIsLoading, setQuestions) => {
   }
 };
 
-export const postAnswers = async (answers) => {
+export const getSurveys = async (setSurveys) => {
+  try {
+    const fetchQuestions = await fetch("http://localhost:3001/api/surveys");
+    const questions = await fetchQuestions.json();
+
+    setSurveys(questions);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const postAnswers = async (userAnswers) => {
   try {
     const sendAnswers = await fetch("http://localhost:3001/api/participant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userAnswers),
     });
-
-    const answers = await sendAnswers.json();
-    console.log(answers);
   } catch (err) {
     console.error(err.message);
   }

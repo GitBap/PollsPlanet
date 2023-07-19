@@ -24,7 +24,7 @@ const Login = () => {
     userInfo.email &&
     !isValidate.showInvalidEmail &&
     !isValidate.showInvalidPassword &&
-    userInfo.password.length > 6;
+    userInfo.password.length > 8;
 
   const handleInput = (event) => {
     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });

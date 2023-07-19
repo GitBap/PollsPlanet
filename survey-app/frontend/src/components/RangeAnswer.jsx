@@ -5,13 +5,19 @@ import { getColor } from "../utils/getColor";
 
 import "./styles/ui/rangeAnswer.scss";
 
-const RangeAnswer = () => {
+const RangeAnswer = ({ onGetAnswerValue }) => {
   const [count, setCount] = useState(1);
 
   const primaryColor = getColor("--primary-color");
   const labelInputColor = getColor("--input-label-color");
   const dangerColor = getColor("--danger");
   const warningColor = getColor("--warning");
+
+  const handleCountChange = (event) => {
+    const value = event.target.value;
+    setCount(value);
+    onGetAnswerValue(value);
+  };
 
   return (
     <div className="answer">
@@ -37,10 +43,7 @@ const RangeAnswer = () => {
             height: "10px",
           },
         }}
-        onChange={(event) => {
-          const value = event.target.value;
-          setCount(value);
-        }}
+        onChange={handleCountChange}
       />
       <p
         style={{
