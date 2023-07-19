@@ -29,8 +29,8 @@ const Register = () => {
 
   const validate =
     userInfo.email &&
-    isValidate.showInvalidEmail &&
-    isValidate.showInvalidPassword &&
+    !isValidate.showInvalidEmail &&
+    !isValidate.showInvalidPassword &&
     userInfo.password === userInfo.confirmPassword &&
     userInfo.name.length >= 4 &&
     userInfo.password.length > 8;
@@ -123,7 +123,7 @@ const Register = () => {
               {isValidate.showInvalidPassword && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
-                  <span>Invalid email</span>
+                  <span>Invalid password</span>
                 </p>
               )}
             </div>

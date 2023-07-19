@@ -54,15 +54,16 @@ CREATE TABLE ANSWERS (
     FOREIGN KEY (question_id) REFERENCES QUESTIONS(question_id)
 );
 
--- CREATE TABLE USERS (
---     id SERIAL PRIMARY KEY,
+CREATE TABLE USERS (
+    id SERIAL PRIMARY KEY,
 --     tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
+    name VARCHAR(255) NOT NULL,
 --     first_name VARCHAR(255) NOT NULL,
 --     middle_name VARCHAR(255),
 --     last_name VARCHAR(255) NOT NULL,
 --     user_name VARCHAR(255) NOT NULL,
---     password VARCHAR(255) NOT NULL,
---     email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
 --     role VARCHAR(32) NOT NULL, -- admin, participant
 --     address VARCHAR(255) NOT NULL,
 --     city VARCHAR(64) NOT NULL,
@@ -73,7 +74,7 @@ CREATE TABLE ANSWERS (
 --     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 --     CHECK (role IN ('admin', 'participant'))
 --     CHECK (IF role = 'participant' THEN user_name IS NULL ENDIF)
--- );
+);
 
 -- -- user sessions; something to work on later
 -- CREATE TABLE USER_SESSIONS (
@@ -84,6 +85,7 @@ CREATE TABLE ANSWERS (
 --     FOREIGN KEY (session_id) REFERENCES USERS(id)
 -- );
 
+-- INSERT FOR surveys
 INSERT INTO surveys (title)
 VALUES ('First Survey');
 INSERT INTO questions (survey_id, question_id, question)
@@ -106,3 +108,16 @@ INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 9, 'On a scale of 1-10, how willing are you learn about programming?');
 INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 10, 'On a scale of 1-10, how much do you like to eat?');
+
+
+-- INSERT for users
+INSERT INTO users (name, password, email)
+VALUES ('Paolo', 'password', 'test@test.com');
+INSERT INTO users (name, password, email)
+VALUES ('Yevhen', 'password1', 'test1@test.com');
+INSERT INTO users (name, password, email)
+VALUES ('Woldy', 'password2', 'test2@test.com');
+INSERT INTO users (name, password, email)
+VALUES ('Olivier', 'password3', 'test3@test.com');
+INSERT INTO users (name, password, email)
+VALUES ('Ke', 'password4', 'test4@test.com');
