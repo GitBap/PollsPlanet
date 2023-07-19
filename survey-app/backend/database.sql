@@ -4,6 +4,9 @@ CREATE DATABASE polls_planet;
 
 -- this is a first-draft of the database schema for the survey app
 
+-- to use uuid in various tables
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE SURVEYS (
     id SERIAL PRIMARY KEY,
     -- tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
@@ -26,7 +29,7 @@ CREATE TABLE QUESTIONS (
     FOREIGN KEY (survey_id) REFERENCES SURVEYS(id)
 );
 
--- CREATE TABLE LINKING_TABLE (
+-- CREATE TABLE USERS_SURVEYS_LINK (
 --     id SERIAL PRIMARY KEY,
 --     survey_id INT NOT NULL,
 --     question_id INT NOT NULL,
@@ -54,16 +57,17 @@ CREATE TABLE ANSWERS (
     FOREIGN KEY (question_id) REFERENCES QUESTIONS(question_id)
 );
 
--- CREATE TABLE USERS (
---     id SERIAL PRIMARY KEY,
+CREATE TABLE USERS (
+    id SERIAL PRIMARY KEY,
 --     tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
+    name VARCHAR(255) NOT NULL,
 --     first_name VARCHAR(255) NOT NULL,
 --     middle_name VARCHAR(255),
 --     last_name VARCHAR(255) NOT NULL,
 --     user_name VARCHAR(255) NOT NULL,
---     password VARCHAR(255) NOT NULL,
---     email VARCHAR(255) NOT NULL UNIQUE,
---     role VARCHAR(32) NOT NULL, -- admin, participant
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
+    -- role VARCHAR(32) NOT NULL, -- admin, participant
 --     address VARCHAR(255) NOT NULL,
 --     city VARCHAR(64) NOT NULL,
 --     state_province VARCHAR(64) NOT NULL,
@@ -71,9 +75,9 @@ CREATE TABLE ANSWERS (
 --     country VARCHAR(64) NOT NULL,
 --     phone_number VARCHAR(64) NOT NULL,
 --     created_at TIMESTAMP NOT NULL DEFAULT NOW()
---     CHECK (role IN ('admin', 'participant'))
+    -- CHECK (role IN ('admin', 'participant'))
 --     CHECK (IF role = 'participant' THEN user_name IS NULL ENDIF)
--- );
+);
 
 -- -- user sessions; something to work on later
 -- CREATE TABLE USER_SESSIONS (
@@ -84,8 +88,15 @@ CREATE TABLE ANSWERS (
 --     FOREIGN KEY (session_id) REFERENCES USERS(id)
 -- );
 
+-- INSERT for surveys
 INSERT INTO surveys (title)
 VALUES ('First Survey');
+INSERT INTO surveys (title)
+VALUES ('Second Survey');
+INSERT INTO surveys (title)
+VALUES ('Third Survey');
+
+-- INSERT for questions
 INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 1, 'On a scale of 1-10, what is your level happiness?');
 INSERT INTO questions (survey_id, question_id, question)
@@ -106,3 +117,15 @@ INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 9, 'On a scale of 1-10, how willing are you learn about programming?');
 INSERT INTO questions (survey_id, question_id, question)
 VALUES (1, 10, 'On a scale of 1-10, how much do you like to eat?');
+
+-- INSERT for users
+INSERT INTO users (name, email, password)
+VALUES ('Paolo', 'test@test.com', 'password');
+INSERT INTO users (name, email, password)
+VALUES ('Yevhen','test1@test.com', 'password1');
+INSERT INTO users (name, email, password)
+VALUES ('Woldy', 'test2@test.com', 'password2');
+INSERT INTO users (name, email, password)
+VALUES ('Olivier', 'test3@test.com', 'password3');
+INSERT INTO users (name, email, password)
+VALUES ('Ke','test4@test.com', 'password4');

@@ -65,7 +65,7 @@ header {
     .mobile-menu {
       position: absolute;
       padding: 60px;
-      width: calc(50% - 60px);
+      width: calc(50% + 60px);
       height: 100vh;
       top: 100%;
       background-color: var(--primary-color);
