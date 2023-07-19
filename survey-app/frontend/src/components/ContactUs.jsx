@@ -1,63 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import "./styles/contact.scss";
 
-const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+const Contact = () => {
+    return (
+        <div className="container">
+            <div className="contact-block">
+                <h1>Contact Us</h1>
+                <form className="contact-form">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" id="name" className="input-text" placeholder="Your Name" />
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" className="input-text" placeholder="Your Email" />
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+                    <label htmlFor="message">Message</label>
+                    <textarea id="message" className="input-text" placeholder="Your Message"></textarea>
 
-    // TODO: add the logic to submit the form
-    console.log(formData);
-  };
-
-  return (
-    <div>
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-        <label style={{ marginBottom: '10px' }}>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={{ display: 'block', marginBottom: '10px' }}
-          />
-        </label>
-        <label style={{ marginBottom: '10px' }}>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={{ display: 'block', marginBottom: '10px' }}
-          />
-        </label>
-        <label style={{ marginBottom: '10px' }}>
-          Message:
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            style={{ display: 'block', marginBottom: '10px' }}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
+                    <button type="submit" className="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    );
 };
 
-export default ContactUs;
+export default Contact;
