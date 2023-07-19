@@ -22,6 +22,16 @@ const router = express.Router();
 //   res.json(administrators);
 // });
 
+router.get("/", async (req, res) => {
+  try {
+    const users = await getAllUsers();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.sendStatus(500);
+  }
+});
+
 // router.put("/:id", async (req, res) => {
 //   const { id } = req.params;
 //   const { name, email } = req.body;
@@ -36,6 +46,18 @@ const router = express.Router();
 //     res.json(rows[0]);
 //   }
 // });
+
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userUpdates = req.body;
+    const updatedUser = await updateUser(id, userUpdates);
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err.message);
+    res.sendStatus(500);
+  }
+});
 
 router.post("/register", async (req, res) => {
   const { name, password, email } = req.body;
@@ -71,5 +93,27 @@ router.post("/register", async (req, res) => {
 //     next(err);
 //   }
 // });
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await deleteUser(id);
+    res.json({ success: deleted });
+  } catch (err) {
+    console.error(err.message);
+    res.sendStatus(500);
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await login(email, password);
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.sendStatus(500);
+  }
+});
 
 export const usersAdmin = router;
