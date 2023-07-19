@@ -24,11 +24,10 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const users = await getAllUsers();
-    res.json(users);
+    const allUsers = await pool.query("SELECT * FROM users");
+    res.json(allUsers.rows);
   } catch (err) {
     console.error(err.message);
-    res.sendStatus(500);
   }
 });
 
@@ -50,12 +49,14 @@ router.get("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const userUpdates = req.body;
-    const updatedUser = await updateUser(id, userUpdates);
-    res.json(updatedUser);
+    const { name, email } = req.body;
+    const updateUser = await pool.query(
+      "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
+      [name, email, id]
+    );
+    res.json(updateUser.rows[0]);
   } catch (err) {
     console.error(err.message);
-    res.sendStatus(500);
   }
 });
 
