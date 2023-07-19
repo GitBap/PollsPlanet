@@ -1,6 +1,4 @@
-<img src="survey-app/frontend/public/favicon/favicon-32x32.png" alt="PollsPlanet" align="right" width="75">
-
-# PollsPlanet
+<img src="./diagrams_videos/logo1.svg" alt="PollsPlanet" align="right" width="100%" height="100%">
 
 PollsPlanet is a web application that allows users to create and share surveys with others. Users can create surveys with multiple choice questions, and share them with others via email. Users can also view the results of their surveys in real time.
 
