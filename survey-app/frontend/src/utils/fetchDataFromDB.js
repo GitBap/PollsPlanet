@@ -47,7 +47,9 @@ export const deleteSurvey = async (id) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-  } catch (error) {}
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 
 export const createSurvey = async (survey) => {

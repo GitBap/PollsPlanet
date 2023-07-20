@@ -15,11 +15,15 @@ const Survey = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   // FIXME: create useContext
-  const [surveys, setSurvays] = useState([]);
+  const [surveys, setSurveys] = useState([]);
+
+  const surveyWithID = surveys.find(
+    (survey) => Number(survey.id) === Number(id)
+  );
 
   useEffect(() => {
     getQuestions(setIsLoading, setQuestions);
-    getSurveys(setSurvays);
+    getSurveys(setSurveys);
   }, []);
 
   useEffect(() => {
@@ -59,7 +63,7 @@ const Survey = () => {
     <section className="survey">
       {questions && (
         <form onSubmit={(event) => onSubmit(event)}>
-          <h3 className="survey-title">{surveys[id - 1]?.title}</h3>
+          <h3 className="survey-title">{surveyWithID?.title}</h3>
           {questions
             .filter((question) => question.survey_id === parseInt(id))
             .map((question, index) => {

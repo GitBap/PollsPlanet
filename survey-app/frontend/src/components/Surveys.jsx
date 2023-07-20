@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
-import { getSurveys } from "../utils/fetchDataFromDB";
+import { getSurveys, deleteSurvey } from "../utils/fetchDataFromDB";
 
 import "./styles/surveys.scss";
 
 const Surveys = () => {
-  const [surveys, setSurvays] = useState([]);
+  const [surveys, setSurveys] = useState([]);
 
   useEffect(() => {
-    getSurveys(setSurvays);
-  }, []);
+    getSurveys(setSurveys);
+  }, [surveys]);
 
   return (
     <section className="surveys">
@@ -34,7 +34,14 @@ const Surveys = () => {
                     Open
                   </Link>
                   <button className="btn edit">Edit</button>
-                  <button className="btn delete">Delete</button>
+                  <button
+                    className="btn delete"
+                    onClick={() => {
+                      deleteSurvey(survey.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             );

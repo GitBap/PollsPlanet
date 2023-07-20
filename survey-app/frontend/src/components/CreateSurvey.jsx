@@ -32,6 +32,7 @@ const CreateSurvey = () => {
               createSurvey(newSurvey);
               setNewSurvey((draft) => {
                 draft.surveyName = "";
+                draft.questions = [];
               });
             }}
           >
