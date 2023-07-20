@@ -12,16 +12,34 @@ const router = express.Router();
 
 // create survey route for administrator
 router.post("/new-survey", async (req, res) => {
-  try {
-    const { title } = req.body;
-    const insertText = await pool.query(
-      "INSERT INTO surveys (title) VALUES($1) RETURNING *;",
-      [title]
-    );
-    res.status(201).json(insertText.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
+  const {surveyName, questions} = req.body;
+
+  // Step 1: Insert the survey
+  const insertSurveyQuery = 'INSERT INTO surveys (title) VALUES ($1) RETURNING id';
+  pool.query(insertSurveyQuery, [surveyName], (err, surveyResult) => {
+    if (err) {
+      console.error('Error inserting survey:', err);
+      return res.status(500).json({ error: 'Error inserting survey' });
+    }
+
+    const surveyId = surveyResult.rows[0].id;
+    
+    // Step 2: Insert the questions associated with the survey
+    const insertQuestionsQuery = `
+      INSERT INTO questions (survey_id, question) 
+      SELECT $1, unnest($2::text[]) 
+    `;    
+    const values = questions.map((question) => [surveyId, question]);
+
+    pool.query(insertQuestionsQuery, [surveyId, questions], (err, questionsResult) => {
+      if (err) {
+        console.error('Error inserting questions:', err);
+        return res.status(500).json({ error: 'Error inserting questions' });
+      }
+
+      res.json({ surveyId, message: 'Survey and questions inserted successfully' });
+    });
+  });
 });
 
 // GET all surveys route for administrator
