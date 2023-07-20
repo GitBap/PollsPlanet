@@ -8,6 +8,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
 
     .logo-block {
       svg {
@@ -54,6 +55,22 @@ header {
       }
     }
 
+    .sign-out {
+      margin-right: 10px;
+      margin-left: auto;
+
+      @media (max-width: 640px) {
+        font-size: 14px;
+        padding: 2px;
+      }
+    }
+
+    .sign-out-mob {
+      display: block;
+      padding: 10px 15px;
+      margin: 0 auto;
+    }
+
     .login-btns,
     .control-btns {
       display: flex;
@@ -65,7 +82,7 @@ header {
     .mobile-menu {
       position: absolute;
       padding: 60px;
-      width: calc(50% + 60px);
+      width: calc(70% + 60px);
       height: 100vh;
       top: 100%;
       background-color: var(--primary-color);

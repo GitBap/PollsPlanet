@@ -134,20 +134,17 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
               )}
             </ul>
           </nav>
-          {/* FIXME: the responsive for sign out putton */}
           {isAuthenticated ? (
-            <div>
-              <button
-                className="btn"
-                onClick={() => {
-                  setIsAuthenticated(false);
-                  Cookies.remove("name");
-                  navigate("/");
-                }}
-              >
-                Sign out
-              </button>
-            </div>
+            <button
+              className="btn sign-out"
+              onClick={() => {
+                setIsAuthenticated(false);
+                Cookies.remove("name");
+                navigate("/");
+              }}
+            >
+              Sign out
+            </button>
           ) : (
             <div className="login-btns">
               <Link className="btn" to={"/register"}>
@@ -189,15 +186,27 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
                 )}
               </ul>
             </nav>
-            {/* FIXME: add sign out button when login and hide another buttons */}
-            <div className="login-btns">
-              <Link className="btn" to={"/register"}>
-                Sign up
-              </Link>
-              <Link className="btn" to={"/login"}>
-                Sign in
-              </Link>
-            </div>
+            {isAuthenticated ? (
+              <button
+                className="btn sign-out sign-out-mob"
+                onClick={() => {
+                  setIsAuthenticated(false);
+                  Cookies.remove("name");
+                  navigate("/");
+                }}
+              >
+                Sign out
+              </button>
+            ) : (
+              <div className="login-btns">
+                <Link className="btn" to={"/register"}>
+                  Sign up
+                </Link>
+                <Link className="btn" to={"/login"}>
+                  Sign in
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
