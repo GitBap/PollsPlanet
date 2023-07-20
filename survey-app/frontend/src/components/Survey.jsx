@@ -27,7 +27,7 @@ const Survey = () => {
       questions
         .map((question) => ({
           survey_id: question.survey_id,
-          question_id: question.question_id,
+          question_id: question.id,
           answer: 1,
         }))
         .filter((question) => question.survey_id === parseInt(id))
@@ -57,32 +57,34 @@ const Survey = () => {
 
   return (
     <section className="survey">
-      <form onSubmit={(event) => onSubmit(event)}>
-        <h3 className="survey-title">{surveys[id - 1]?.title}</h3>
-        {questions
-          .filter((question) => question.survey_id === parseInt(id))
-          .map((question, index) => {
-            return (
-              <div key={`question-${index}`} className="survey-item">
-                <p className="survey-question">{`${index + 1}. ${
-                  question.question
-                }`}</p>
-                <RangeAnswer
-                  onGetAnswerValue={(value) => getAnswerValue(index, value)}
-                />
-              </div>
-            );
-          })}
-        <button
-          className="btn"
-          onClick={() => {
-            document.body.style.overflowY = "hidden";
-            isSetShowModal((prev) => !prev);
-          }}
-        >
-          Submit
-        </button>
-      </form>
+      {questions && (
+        <form onSubmit={(event) => onSubmit(event)}>
+          <h3 className="survey-title">{surveys[id - 1]?.title}</h3>
+          {questions
+            .filter((question) => question.survey_id === parseInt(id))
+            .map((question, index) => {
+              return (
+                <div key={`question-${index}`} className="survey-item">
+                  <p className="survey-question">{`${index + 1}. ${
+                    question.question
+                  }`}</p>
+                  <RangeAnswer
+                    onGetAnswerValue={(value) => getAnswerValue(index, value)}
+                  />
+                </div>
+              );
+            })}
+          <button
+            className="btn"
+            onClick={() => {
+              document.body.style.overflowY = "hidden";
+              isSetShowModal((prev) => !prev);
+            }}
+          >
+            Submit
+          </button>
+        </form>
+      )}
       {isShowModal && <ThanksModal isSetShowModal={isSetShowModal} />}
     </section>
   );

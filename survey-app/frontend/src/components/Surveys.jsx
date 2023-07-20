@@ -24,6 +24,7 @@ const Surveys = () => {
           </button>
         </div>
         <div className="wrapper">
+          {surveys.length <= 0 && <p>Looks like you don't have surveys...</p>}
           {surveys.map((survey, index) => {
             return (
               <div className="survay-item" key={`survay-${index}`}>
