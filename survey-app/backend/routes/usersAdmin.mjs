@@ -120,4 +120,23 @@ router.delete("/delete", async (req, res) => {
 //   }
 // });
 
+// route for user/admin to reset password (after clicking forgot password)
+router.post("/forgot-password", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await pool.query(
+      "SELECT * FROM users WHERE email = $1 RETURNING *;",
+      [email]
+    );
+    if (user.rows.length === 0) {
+      res.status(404).json({ message: "User not found" });
+    } else {
+      // send email to user with link to reset password
+      res.status(200).json({ message: "Email sent" });
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 export const usersAdmin = router;
