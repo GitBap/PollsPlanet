@@ -1,5 +1,6 @@
 import express from "express";
 import pool from "../db.js";
+import { v4 as uuidv4 } from "uuid";
 import authorize from "../middleware/auth.mjs";
 // import {
 //   getAllUsers,
@@ -70,7 +71,21 @@ router.post("/login", async (req, res, next) => {
     ) {
       res.status(401).json({ message: "Invalid email or password" });
     } else {
-      // Send a response indicating successful login
+      // Send a response indicating successful login and assign the user a session id
+      const sessionId = uuidv4();
+      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+      const expiryDate = new Date(Date.now() + oneDay);
+
+      await pool.query(
+        "INSERT INTO user_sessions (email, session_id, expires_at) VALUES ($1, $2, $3);",
+        [email, sessionId, expiryDate]
+      );
+      res.cookie("session_id", sessionId, {
+        expires: expiryDate,
+        httpOnly: true,
+        secure: true,
+      });
+
       res.status(200).json({ message: "Successful Login" });
     }
   } catch (err) {

@@ -80,13 +80,14 @@ CREATE TABLE USERS (
 );
 
 --     user sessions; something to work on later
---     CREATE TABLE USER_SESSIONS (
---     id SERIAL PRIMARY KEY,
---     session_id VARCHAR(255) UNIQUE NOT NULL,
---     created_at TIMESTAMP NOT NULL DEFAULT NOW()
---     expires_at TIMESTAMP NOT NULL,
+    CREATE TABLE USER_SESSIONS (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) REFERENCES USERS(email),
+    session_id VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    expires_at TIMESTAMP NOT NULL
 --     FOREIGN KEY (session_id) REFERENCES USERS(id)
--- );
+);
 
 -- INSERT for surveys
 INSERT INTO surveys (title)
