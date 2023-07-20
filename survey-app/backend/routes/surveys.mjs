@@ -65,6 +65,47 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Get all surveys by user_id route for administrator
+// param :id means user_id
+router.get("/usersurveys/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const queryText = `SELECT
+          surveys.id AS survey_id,
+          surveys.title AS survey_title 
+          FROM surveys
+          inner JOIN users ON surveys.user_id = users.id
+          WHERE users.id = $1;`
+    const userSurveys = await pool.query(queryText, [id,]);
+    res.json(userSurveys.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Get all surveys and questons and answers by user_id route for administrator
+// param :id means user_id
+router.get("/surverysanswers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const queryText = `SELECT
+          surveys.id AS survey_id,
+          surveys.title AS survey_title,
+          questions.id AS question_id,
+          questions.question,
+          answers.id AS answer_id,
+          answers.answer
+          FROM surveys
+          left JOIN questions ON surveys.id = questions.survey_id
+          LEFT JOIN answers ON questions.id = answers.question_id
+          left JOIN users ON surveys.user_id = users.id
+          WHERE users.id = $1;`
+    const surveyResults = await pool.query(queryText, [id,]);
+    res.json(surveyResults.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // update survey and its questions route for administrator
 router.put("/:id", async (req, res) => {
