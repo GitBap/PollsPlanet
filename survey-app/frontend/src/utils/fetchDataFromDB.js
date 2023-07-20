@@ -2,7 +2,9 @@
 export const getQuestions = async (setIsLoading, setQuestions) => {
   try {
     setIsLoading(true);
-    const fetchQuestions = await fetch("http://localhost:3001/api/participant");
+    const fetchQuestions = await fetch(
+      "http://localhost:3001/api/participant/ans"
+    );
     const questions = await fetchQuestions.json();
 
     setQuestions(questions);
@@ -36,6 +38,18 @@ export const postAnswers = async (userAnswers) => {
   }
 };
 
+export const deleteSurvey = async (id) => {
+  try {
+    const deleteSurvey = await fetch(
+      `http://localhost:3001/api/surveys/${id}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {}
+};
+
 // Admins and admin info
 
 export const getUsers = async (setUsers) => {
@@ -52,6 +66,18 @@ export const getUsers = async (setUsers) => {
 export const createUser = async (userData) => {
   try {
     const newUser = await fetch("http://localhost:3001/api/admin/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const loginUser = async (userData) => {
+  try {
+    const logUser = await fetch("http://localhost:3001/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
