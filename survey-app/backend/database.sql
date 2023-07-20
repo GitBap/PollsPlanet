@@ -17,7 +17,7 @@ CREATE TABLE SURVEYS (
     -- category VARCHAR(255) NOT NULL, -- programming, education, etc
     -- language VARCHAR(10) NOT NULL, -- english, french
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 DROP TABLE IF EXISTS QUESTIONS;
@@ -30,7 +30,7 @@ CREATE TABLE QUESTIONS (
     -- type VARCHAR(255) NOT NULL, -- boolean, multiple_choice, text
     -- language VARCHAR(10) NOT NULL, -- english, french
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id) ON DELETE CASCADE
+    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id)
 );
 
 -- CREATE TABLE USERS_SURVEYS_LINK (
@@ -58,8 +58,8 @@ CREATE TABLE ANSWERS (
     question_id INT NOT NULL,
     answer VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES QUESTIONS(id) ON DELETE CASCADE
+    FOREIGN KEY (survey_id) REFERENCES SURVEYS(id),
+    FOREIGN KEY (question_id) REFERENCES QUESTIONS(id)
 );
 
 DROP TABLE IF EXISTS USERS;
