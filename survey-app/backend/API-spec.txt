@@ -1,0 +1,66 @@
+1. create survey and all its questions
+http://localhost:3001/api/surveys/new-survey
+
+input
+{
+  "surveyName": "My Survey 2",
+   "user_id": 1,
+  "questions": [
+    "Question 1",
+	"Question 2"
+  ]
+}
+
+output
+{
+	"surveyId": 8,
+	"message": "Survey and questions inserted successfully"
+}
+
+------------------------------------------------------------------
+
+2. update a survey and its questions, pass survey's id via api
+http://localhost:3001/api/surveys/2
+input 
+{
+  "surveyName": "Update My Survey 1",
+  "questions": [{
+	  "id": 1,
+      "question": "update Question 1"
+	  },
+	  {
+	  "id": 2,
+      "question": "update Question 2"
+	}
+  ]
+}
+
+output
+{
+	"message": "Survey updated successfully"
+}
+
+3. delete a survey by an survey's id --> delete the survey and all its questions
+http://localhost:3001/api/surveys/1
+
+return message : "Survey 1 was deleted!"
+
+4. Get all surveys by the user id
+get all the surveys which are created by the user id
+
+http://localhost:3001/api/surveys/usersurveys/1
+
+return an array:
+[
+	{
+		"survey_id": 2,
+		"survey_title": "My Survey 1"
+	},
+	{
+		"survey_id": 3,
+		"survey_title": "My Survey 2"
+	}
+]
+
+5. GET all surveys route for all administrator
+http://localhost:3001/api/surveys
