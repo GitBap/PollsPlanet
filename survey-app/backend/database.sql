@@ -21,7 +21,7 @@ CREATE TABLE QUESTIONS (
     id SERIAL PRIMARY KEY,
     -- tenant_id VARCHAR(255) NOT NULL UNIQUE,
     survey_id INT NOT NULL,
-    question_id INT NOT NULL UNIQUE,
+    --question_id INT NOT NULL UNIQUE,
     question TEXT NOT NULL,
     -- type VARCHAR(255) NOT NULL, -- boolean, multiple_choice, text
     -- language VARCHAR(10) NOT NULL, -- english, french
