@@ -3,8 +3,22 @@ import pool from "../db.js";
 
 const router = express.Router();
 
+// GET all answers for a specified question route for participant
+//:id means a question id
+router.get("/answers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const answersSpecifiedQ = await pool.query("SELECT * FROM ANSWERS where question_id = $1", [
+      id,
+    ]);
+    res.json(answersSpecifiedQ.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // GET all questions route for participant
-router.get("/", async (req, res) => {
+router.get("/ans", async (req, res) => {
   try {
     const allQuestions = await pool.query("SELECT * FROM questions");
     res.json(allQuestions.rows);

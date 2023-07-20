@@ -12,11 +12,11 @@ const router = express.Router();
 
 // create survey route for administrator
 router.post("/new-survey", async (req, res) => {
-  const {surveyName, questions} = req.body;
+  const {surveyName, user_id,questions} = req.body;
 
   // Step 1: Insert the survey
-  const insertSurveyQuery = 'INSERT INTO surveys (title) VALUES ($1) RETURNING id';
-  pool.query(insertSurveyQuery, [surveyName], (err, surveyResult) => {
+  const insertSurveyQuery = 'INSERT INTO surveys (user_id,title) VALUES ($1,$2) RETURNING id';
+  pool.query(insertSurveyQuery, [user_id,surveyName], (err, surveyResult) => {
     if (err) {
       console.error('Error inserting survey:', err);
       return res.status(500).json({ error: 'Error inserting survey' });
@@ -64,6 +64,7 @@ router.get("/:id", async (req, res) => {
     console.error(err.message);
   }
 });
+
 
 // update survey and its questions route for administrator
 router.put("/:id", async (req, res) => {
