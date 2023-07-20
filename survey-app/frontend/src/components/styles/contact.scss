@@ -1,48 +1,103 @@
 @import "./variables.scss";
 
-.container {
-  padding: 20px 0;
+.contact {
+  padding: 80px 0;
 
-  .contact-block {
+  .wrapper {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;  // This will center the block
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
 
-    h1 {
-      color: var(--button-text-color);
-      text-align: center;
+    a {
+      display: inline-block;
     }
 
-    .contact-form {
-      display: flex;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 40%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      background-color: var(--primary-color);
+    }
+
+    @media (max-width: 640px) {
       flex-direction: column;
 
-      label {
-        color: var(--button-text-color);
-        margin-bottom: 5px;
-      }
-
-      .input-text {
-        margin-bottom: 20px;
-      }
-
-      textarea.input-text {
-        height: 150px;
-        resize: none; // Add this line
-      }
-      
-
-      .btn {
-        margin-bottom: 20px;
+      &::after {
+        width: 100%;
+        height: 40%;
+        top: 70%;
+        left: 0;
       }
     }
-  }
 
-  @media (max-width: 768px) {
-    .contact-block {
-      width: 100%;
+    form {
+      width: 60%;
+
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+
+      .form-title {
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 20px;
+        color: var(--text-color);
+      }
+
+      .input-box {
+        position: relative;
+
+        .MuiSvgIcon-root {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translate(50%, 60%);
+        }
+
+        input, textarea {
+          padding-left: 40px;
+          margin-bottom: 26px;
+        }
+
+        textarea {
+          height: 150px; 
+          resize: none; // Disable textarea resizing
+        }
+      }
+    }
+
+    .greeting {
+      padding: 10px;
+      position: relative;
+      width: 40%;
+      height: 100%;
+      z-index: 1;
+      text-align: center;
+      color: var(--text-color);
+
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+
+      h3 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-bottom: 40px;
+      }
     }
   }
 }
