@@ -13,14 +13,26 @@ import Survey from "./components/Survey";
 import Register from "./components/Register";
 import Login from "./components/Login";
 
+import Auth from "./components/Auth";
+import Cookies from "js-cookie";
+
 const App = () => {
   const [theme, setTheme] = useState("light");
-  // FIXME: try to store into LocalStorage or cookie
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const readCookies = () => {
+    const userCookies = Cookies.get("name");
+
+    if (userCookies) {
+      setIsAuthenticated(true);
+    }
+  };
 
   useEffect(() => {
     const receiveTheme = window.localStorage.getItem("theme");
     if (receiveTheme !== null) setTheme(JSON.parse(receiveTheme));
+
+    readCookies();
   }, []);
 
   useEffect(() => {
@@ -30,37 +42,39 @@ const App = () => {
 
   return (
     <div className="website">
-      <HelmetProvider>
-        <Header
-          theme={theme}
-          setTheme={setTheme}
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-        />
-        <main>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/contactus" element={<ContactUs />} />
-            <Route
-              path="/register"
-              element={!isAuthenticated && <Register />}
-            />
-            <Route
-              path="/login"
-              element={
-                !isAuthenticated && (
-                  <Login setIsAuthenticated={setIsAuthenticated} />
-                )
-              }
-            />
+      <Auth.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+        <HelmetProvider>
+          <Header
+            theme={theme}
+            setTheme={setTheme}
+            isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
+          />
+          <main>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route
+                path="/register"
+                element={!isAuthenticated && <Register />}
+              />
+              <Route
+                path="/login"
+                element={
+                  !isAuthenticated && (
+                    <Login setIsAuthenticated={setIsAuthenticated} />
+                  )
+                }
+              />
 
-            <Route path="/surveys" element={isAuthenticated && <Surveys />} />
-            <Route path="/surveys/:id" element={<Survey />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </HelmetProvider>
+              <Route path="/surveys" element={isAuthenticated && <Surveys />} />
+              <Route path="/surveys/:id" element={<Survey />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </HelmetProvider>
+      </Auth.Provider>
     </div>
   );
 };

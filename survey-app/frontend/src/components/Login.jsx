@@ -7,6 +7,7 @@ import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import * as EmailValidator from "email-validator";
 import { getUsers } from "../utils/fetchDataFromDB";
+import Cookies from "js-cookie";
 
 import "./styles/login.scss";
 
@@ -49,6 +50,9 @@ const Login = ({ setIsAuthenticated }) => {
               const userWithEmail = users.find(
                 (item) => item.email == userInfo.email
               );
+              // TODO: create uuid for value and change name
+              Cookies.set("name", "value");
+
               if (userWithEmail?.password === userInfo?.password) {
                 setIsAuthenticated((prev) => !prev);
                 navigate("/surveys");

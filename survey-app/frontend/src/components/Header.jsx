@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Hamburger from "./Hamburger";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import Auth from "./Auth";
+
+import Cookies from "js-cookie";
 
 import "./styles/header.scss";
 
-const Header = ({ theme, setTheme, isAuthenticated, setIsAuthenticated }) => {
+const Header = ({ theme, setTheme }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
 
   const navigate = useNavigate();
 
@@ -129,12 +134,14 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
               )}
             </ul>
           </nav>
+          {/* FIXME: the responsive for sign out putton */}
           {isAuthenticated ? (
             <div>
               <button
                 className="btn"
                 onClick={() => {
-                  setIsAuthenticated((prev) => !prev);
+                  setIsAuthenticated(false);
+                  Cookies.remove("name");
                   navigate("/");
                 }}
               >
@@ -182,6 +189,7 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
                 )}
               </ul>
             </nav>
+            {/* FIXME: add sign out button when login and hide another buttons */}
             <div className="login-btns">
               <Link className="btn" to={"/register"}>
                 Sign up
