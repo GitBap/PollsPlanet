@@ -18,10 +18,10 @@ const Surveys = () => {
       <div className="container">
         <div className="heading">
           <h2>Our Surveys</h2>
-          <button className="btn add">
+          <Link to={"/create-survey"} className="btn add">
             <span className="tooltip">Create survey</span>
             <AddOutlinedIcon />
-          </button>
+          </Link>
         </div>
         <div className="wrapper">
           {surveys.length <= 0 && <p>Looks like you don't have surveys...</p>}

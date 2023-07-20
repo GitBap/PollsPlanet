@@ -50,6 +50,21 @@ export const deleteSurvey = async (id) => {
   } catch (error) {}
 };
 
+export const createSurvey = async (survey) => {
+  try {
+    const newSurvey = await fetch(
+      "http://localhost:3001/api/surveys/new-survey",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(survey),
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 // Admins and admin info
 
 export const getUsers = async (setUsers) => {

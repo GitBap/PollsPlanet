@@ -15,6 +15,7 @@ import Login from "./components/Login";
 
 import Auth from "./components/Auth";
 import Cookies from "js-cookie";
+import CreateSurvey from "./components/CreateSurvey";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -69,6 +70,7 @@ const App = () => {
 
               <Route path="/surveys" element={isAuthenticated && <Surveys />} />
               <Route path="/surveys/:id" element={<Survey />} />
+              <Route path="/create-survey" element={<CreateSurvey />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
