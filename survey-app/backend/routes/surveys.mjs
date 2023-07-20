@@ -67,16 +67,37 @@ router.get("/:id", async (req, res) => {
 
 // update survey route for administrator
 router.put("/:id", async (req, res) => {
+  const surveyId = req.params.id;
+  const { surveyName, questions } = req.body;
+
   try {
-    const { id } = req.params;
-    const { title } = req.body;
-    const updateSurvey = await pool.query(
-      "UPDATE surveys SET title = $1 WHERE id = $2 RETURNING *",
-      [title, id]
+    await pool.query('BEGIN');
+
+    // Update the survey
+    await pool.query(
+      'UPDATE SURVEYS SET title = $1 WHERE id = $2',
+      [surveyName, surveyId]
     );
-    res.json(updateSurvey.rows[0]);
-  } catch (err) {
-    console.error(err.message);
+
+    // Update questions
+    for (const question of questions) {
+      if (question.id) {
+        // If the question already exists, update it
+        await pool.query(
+          'UPDATE QUESTIONS SET question = $1 WHERE id = $2',
+          [question.question, question.id]
+        );
+      }
+    }
+
+    await pool.query('COMMIT');
+    res.status(200).json({ message: 'Survey updated successfully' });
+  } catch (error) {
+    await pool.query('ROLLBACK');
+    console.error('Error during transaction', error);
+    res.status(500).json({ error: 'Something went wrong' });
+  } finally {
+    pool.end();
   }
 });
 
