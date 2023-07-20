@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import { usersAdmin } from "./routes/usersAdmin.mjs";
 import { participantRouter } from "./routes/participants.mjs";
 import { surveyRouter } from "./routes/surveys.mjs";
@@ -7,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static("public"));
+// app.use(cookieParser());
 
 // Create a proxy server to avoid the issues with access to fetch hasn't been blocked by cors policy
 app.use((req, res, next) => {

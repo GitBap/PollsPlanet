@@ -83,7 +83,7 @@ router.post("/login", async (req, res, next) => {
       res.cookie("session_id", sessionId, {
         expires: expiryDate,
         httpOnly: true,
-        secure: true,
+        sameSite: "Strict",
       });
 
       res.status(200).json({ message: "Successful Login" });
