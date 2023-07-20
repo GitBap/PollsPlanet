@@ -146,25 +146,44 @@ router.put("/:id", async (req, res) => {
     await pool.query("ROLLBACK");
     console.error("Error during transaction", error);
     res.status(500).json({ error: "Something went wrong" });
-  } finally {
-    pool.end();
-  }
+  } 
 });
 
 // delete survey route for administrator
 router.delete("/:id", async (req, res) => {
   try {
-    // const { title } = req.body;
     const { id } = req.params;
-    const deleteSurvey = await pool.query(
-      "DELETE FROM surveys WHERE id = $1 RETURNING *",
-      [id]
-    );
+    await pool.query("BEGIN");
 
+    // Delete related records from the questions table
+    await pool.query("DELETE FROM ANSWERS WHERE survey_id = $1", [id]);    
+
+    // Delete related records from the questions table
+    await pool.query("DELETE FROM questions WHERE survey_id = $1", [id]);
+
+    // Delete the survey record from the survey table
+    await pool.query("DELETE FROM SURVEYS WHERE id = $1", [id]);
+
+    await pool.query("COMMIT");
     res.json(`Survey ${id} was deleted!`);
-  } catch (err) {
-    console.error(err.message);
+    console.log("Survey and related questions deleted successfully.");
+  } catch (error) {
+    await pool.query("ROLLBACK");
+    console.error("Error during transaction", error);
   }
+
+  // try {
+  //   // const { title } = req.body;
+  //   const { id } = req.params;
+  //   const deleteSurvey = await pool.query(
+  //     "DELETE FROM surveys WHERE id = $1 RETURNING *",
+  //     [id]
+  //   );
+
+  //   res.json(`Survey ${id} was deleted!`);
+  // } catch (err) {
+  //   console.error(err.message);
+  // }
 });
 
 export const surveyRouter = router;
