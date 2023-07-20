@@ -1,3 +1,5 @@
+API about Surveys: 
+
 1. create survey and all its questions
 http://localhost:3001/api/surveys/new-survey
 
@@ -39,11 +41,14 @@ output
 {
 	"message": "Survey updated successfully"
 }
+-----------------------------------------------------------------
 
-3. delete a survey by an survey's id --> delete the survey and all its questions
+3. delete a survey by an survey's id --> delete the survey and all its questions and answers
 http://localhost:3001/api/surveys/1
 
 return message : "Survey 1 was deleted!"
+
+---------------------------------------------------------------------
 
 4. Get all surveys by the user id
 get all the surveys which are created by the user id
@@ -62,5 +67,11 @@ return an array:
 	}
 ]
 
+-------------------------------------------------------
+
 5. GET all surveys route for all administrator
 http://localhost:3001/api/surveys
+
+
+API about users
+1. 
