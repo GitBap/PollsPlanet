@@ -65,7 +65,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// update survey route for administrator
+// update survey and its questions route for administrator
 router.put("/:id", async (req, res) => {
   const surveyId = req.params.id;
   const { surveyName, questions } = req.body;
