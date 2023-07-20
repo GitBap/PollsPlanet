@@ -36,14 +36,26 @@ export const postAnswers = async (userAnswers) => {
   }
 };
 
-// Users and user info
+// Admins and admin info
 
 export const getUsers = async (setUsers) => {
   try {
-    const allUsers = await fetch("http://localhost:3001/api/users");
+    const allUsers = await fetch("http://localhost:3001/api/admin");
     const users = await allUsers.json();
 
     setUsers(users);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const createUser = async (userData) => {
+  try {
+    const newUser = await fetch("http://localhost:3001/api/admin/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
   } catch (err) {
     console.error(err.message);
   }
