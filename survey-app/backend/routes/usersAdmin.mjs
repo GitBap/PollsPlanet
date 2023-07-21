@@ -1,7 +1,7 @@
 import express from "express";
 import pool from "../db.js";
 import cookieParser from "cookie-parser";
-import bcrypt, { genSalt } from "bcrypt";
+import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 // import authorize from "../middleware/auth.mjs";
 // // import {
@@ -46,35 +46,39 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const users = await pool.query("SELECT email, password FROM users;");
     const foundUser = users.rows.find((user) => user.email === email);
 
-    // bcrypt compare password hashes
-    const hash_compare = await bcrypt.compare(password, foundUser.password);
-    // console.log(hash_compare);
-    if (hash_compare === true) {
-      // Send a response indicating successful login and assign the user a session id
-      const sessionId = uuidv4();
-      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-      const expiryDate = new Date(Date.now() + oneDay);
+    if (!foundUser) {
+      res.json({ message: `email: ${email} does not exist` });
+    } else {
+      // bcrypt compare password hashes
+      const hash_compare = await bcrypt.compare(password, foundUser.password);
+      if (hash_compare === true) {
+        // Send a response indicating successful login and assign the user a session id
+        const sessionId = uuidv4();
+        const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+        const expiryDate = new Date(Date.now() + oneDay);
 
-      await pool.query(
-        "INSERT INTO user_sessions (email, session_id, expires_at) VALUES ($1, $2, $3);",
-        [email, sessionId, expiryDate]
-      );
-      res
-        .cookie("session_id", sessionId, {
-          expires: expiryDate,
-          httpOnly: true,
-          secure: true,
-          sameSite: "Strict",
-        })
-        .status(200)
-        .json({ message: "Successful Login" });
+        await pool.query(
+          "INSERT INTO user_sessions (email, session_id, expires_at) VALUES ($1, $2, $3);",
+          [email, sessionId, expiryDate]
+        );
+        res
+          .cookie("session_id", sessionId, {
+            expires: expiryDate,
+            httpOnly: true,
+            secure: true,
+            sameSite: "Strict",
+          })
+          .status(200)
+          .json({ message: "Successful Login" });
+      } else {
+        res.json({ message: "incorrect password" });
+      }
     }
   } catch (err) {
-    res.json({ message: "user/email invalid or not found" });
+    res.json({ message: "invalid email or password" });
     console.error(err.message);
   }
 });
