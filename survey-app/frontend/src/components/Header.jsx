@@ -140,7 +140,7 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
               className="btn sign-out"
               onClick={() => {
                 setIsAuthenticated(false);
-                Cookies.remove("name");
+                Cookies.remove("login-session");
                 navigate("/");
               }}
             >

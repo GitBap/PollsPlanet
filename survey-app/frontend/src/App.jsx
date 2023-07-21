@@ -22,7 +22,7 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const readCookies = () => {
-    const userCookies = Cookies.get("name");
+    const userCookies = Cookies.get("login-session");
 
     if (userCookies) {
       setIsAuthenticated(true);
@@ -67,10 +67,12 @@ const App = () => {
                   )
                 }
               />
-
               <Route path="/surveys" element={isAuthenticated && <Surveys />} />
               <Route path="/surveys/:id" element={<Survey />} />
-              <Route path="/create-survey" element={<CreateSurvey />} />
+              <Route
+                path="/create-survey"
+                element={isAuthenticated && <CreateSurvey />}
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

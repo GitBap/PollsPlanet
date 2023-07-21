@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 // Surveys and survey info
 export const getQuestions = async (setIsLoading, setQuestions) => {
@@ -119,8 +120,7 @@ export const loginUser = async (userData, setIsAuthenticated, navigate) => {
     });
 
     if (logUser) {
-      // TODO: create uuid for value and change name
-      Cookies.set("name", "sdklxpaDFfkdkfjsdlkll2432dfd");
+      Cookies.set("login-session", `${uuidv4()}`);
       setIsAuthenticated((prev) => !prev);
       navigate("/surveys");
     }
