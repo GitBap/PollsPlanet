@@ -2,7 +2,9 @@
 export const getQuestions = async (setIsLoading, setQuestions) => {
   try {
     setIsLoading(true);
-    const fetchQuestions = await fetch("http://localhost:3001/api/participant");
+    const fetchQuestions = await fetch(
+      "http://localhost:3001/api/participant/ans"
+    );
     const questions = await fetchQuestions.json();
 
     setQuestions(questions);
@@ -36,11 +38,40 @@ export const postAnswers = async (userAnswers) => {
   }
 };
 
-// Users and user info
+export const deleteSurvey = async (id) => {
+  try {
+    const deleteSurvey = await fetch(
+      `http://localhost:3001/api/surveys/${id}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const createSurvey = async (survey) => {
+  try {
+    const newSurvey = await fetch(
+      "http://localhost:3001/api/surveys/new-survey",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(survey),
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+// Admins and admin info
 
 export const getUsers = async (setUsers) => {
   try {
-    const allUsers = await fetch("http://localhost:3001/api/users");
+    const allUsers = await fetch("http://localhost:3001/api/admin");
     const users = await allUsers.json();
 
     // const headers = allUsers.headers;
@@ -60,6 +91,30 @@ export const getUsers = async (setUsers) => {
     // });
 
     setUsers(users);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const createUser = async (userData) => {
+  try {
+    const newUser = await fetch("http://localhost:3001/api/admin/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const loginUser = async (userData) => {
+  try {
+    const logUser = await fetch("http://localhost:3001/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
   } catch (err) {
     console.error(err.message);
   }

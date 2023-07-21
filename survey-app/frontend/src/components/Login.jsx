@@ -51,7 +51,7 @@ const Login = ({ setIsAuthenticated }) => {
                 (item) => item.email == userInfo.email
               );
               // TODO: create uuid for value and change name
-              Cookies.set("name", "value");
+              Cookies.set("name", "sdklxpaDFfkdkfjsdlkll2432dfd");
 
               if (userWithEmail?.password === userInfo?.password) {
                 setIsAuthenticated((prev) => !prev);

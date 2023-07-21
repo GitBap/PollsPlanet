@@ -1,5 +1,5 @@
-import React from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useImmer } from "use-immer";
 import { Link } from "react-router-dom";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -8,11 +8,15 @@ import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import * as EmailValidator from "email-validator";
 
+import { createUser, getUsers } from "../utils/fetchDataFromDB";
+
 import "./styles/register.scss";
 
 const Register = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  // FIXME: create useContext for users used it for login and register
+  const [users, setUsers] = useImmer([]);
   const [userInfo, setUserInfo] = useImmer({
     name: "",
     email: "",
@@ -27,13 +31,20 @@ const Register = () => {
     showInvalidComparePasswords: false,
   });
 
+  useEffect(() => {
+    getUsers(setUsers);
+  }, []);
+
+  const isExistEmail = !!users.find((user) => user.email === userInfo.email);
+
   const validate =
     userInfo.email &&
     !isValidate.showInvalidEmail &&
     !isValidate.showInvalidPassword &&
     userInfo.password === userInfo.confirmPassword &&
     userInfo.name.length >= 4 &&
-    userInfo.password.length > 8;
+    userInfo.password.length > 8 &&
+    !isExistEmail;
 
   const handleInput = (event) => {
     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
@@ -46,13 +57,21 @@ const Register = () => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
+
               setUserInfo({
                 name: "",
                 email: "",
                 password: "",
                 confirmPassword: "",
               });
-              console.log(userInfo);
+
+              createUser({
+                name: userInfo.name,
+                email: userInfo.email,
+                password: userInfo.password,
+              });
+
+              navigate("/login");
             }}
           >
             <h2 className="form-title">Create an Account</h2>
@@ -97,6 +116,7 @@ const Register = () => {
                 placeholder="Email"
                 required
               />
+              {/* TODO: add error when emao exist */}
               {isValidate.showInvalidEmail && (
                 <p className="error">
                   <ErrorOutlineOutlinedIcon />
