@@ -1,0 +1,87 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.create-survey {
+  h2 {
+    position: relative;
+    max-width: max-content;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+
+    &::after {
+      @include border-bottom;
+    }
+  }
+
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  .input-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .field-error {
+      position: absolute;
+      right: 0;
+      top: 7%;
+      background-color: var(--danger);
+      padding: 2px 3px;
+      padding-left: 20px;
+      border-radius: 2px;
+
+      .MuiSvgIcon-root {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .input-text {
+    padding: 0 10px;
+  }
+
+  .button-block {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    .btn {
+      display: block;
+      padding: 0 10px;
+
+      @media (max-width: 640px) {
+        padding: 10px 15px;
+        max-width: max-content;
+      }
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+  }
+
+  .question-block {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}

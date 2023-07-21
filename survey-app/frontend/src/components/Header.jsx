@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 
 import "./styles/header.scss";
 
-// FIXME: after click mobile menu buttons should close mobile menu
+// FIXME: after click mobile menu buttons should close mobile menu and fix height
 const Header = ({ theme, setTheme }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
