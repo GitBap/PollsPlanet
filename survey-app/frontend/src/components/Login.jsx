@@ -6,19 +6,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import * as EmailValidator from "email-validator";
-import { getUsers } from "../utils/fetchDataFromDB";
-import Cookies from "js-cookie";
+import { getUsers, loginUser } from "../utils/fetchDataFromDB";
 
 import "./styles/login.scss";
 
 const Login = ({ setIsAuthenticated }) => {
-  const [users, setUsers] = useImmer([]);
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getUsers(setUsers);
-  }, []);
 
   const [userInfo, setUserInfo] = useImmer({
     email: "",
@@ -47,18 +40,7 @@ const Login = ({ setIsAuthenticated }) => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              const userWithEmail = users.find(
-                (item) => item.email == userInfo.email
-              );
-              // TODO: create uuid for value and change name
-              Cookies.set("name", "sdklxpaDFfkdkfjsdlkll2432dfd");
-
-              if (userWithEmail?.password === userInfo?.password) {
-                setIsAuthenticated((prev) => !prev);
-                navigate("/surveys");
-              } else {
-                return;
-              }
+              loginUser(userInfo, setIsAuthenticated, navigate);
             }}
           >
             <h2 className="form-title">Sign In</h2>
