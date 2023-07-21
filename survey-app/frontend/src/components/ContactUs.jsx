@@ -8,9 +8,24 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        window.location.href = `mailto:someone@example.com?subject=Contact from ${name} (${email})&body=${message}`;
+        const response = await fetch('http://localhost:3001/api/contactusEmail/send', {  
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message }),
+        });
+
+        if (!response.ok) {
+            alert('Failed to send email');
+        } else {
+            setName('');
+            setEmail('');
+            setMessage('');
+            alert('Email sent successfully');
+        }
     };
 
     return (

@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import { usersAdmin } from "./routes/usersAdmin.mjs";
 import { participantRouter } from "./routes/participants.mjs";
 import { surveyRouter } from "./routes/surveys.mjs";
+import { contactusEmail } from "./routes/contactusEmail.mjs";
 
 const app = express();
 
@@ -27,8 +28,11 @@ app.use("/api/participant", participantRouter);
 // router entrance for surveys routes
 app.use("/api/surveys", surveyRouter);
 
-// router entrance for admin resgistration/login routes
+// router entrance for admin registration/login routes
 app.use("/api/admin", usersAdmin);
+
+// router entrance for email routes
+app.use("/api/contactusEmail", contactusEmail);
 
 const PORT = 3001;
 app.listen(PORT, () => {
