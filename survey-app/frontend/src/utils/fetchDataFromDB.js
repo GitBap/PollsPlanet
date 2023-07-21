@@ -43,6 +43,22 @@ export const getUsers = async (setUsers) => {
     const allUsers = await fetch("http://localhost:3001/api/users");
     const users = await allUsers.json();
 
+    // const headers = allUsers.headers;
+    // console.log(headers);
+
+    // const responseHeaders = allUsers.headers;
+    // console.log(responseHeaders);
+
+    // // Display keys and values for headers
+    // for (const [key, value] of headers.entries()) {
+    //   console.log(`${key}: ${value}`);
+    // }
+
+    // // send cookies to the browser
+    // headers.forEach((value, name) => {
+    //   document.cookie = `${name}=${value};`;
+    // });
+
     setUsers(users);
   } catch (err) {
     console.error(err.message);
