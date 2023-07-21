@@ -146,7 +146,7 @@ router.put("/:id", async (req, res) => {
     await pool.query("ROLLBACK");
     console.error("Error during transaction", error);
     res.status(500).json({ error: "Something went wrong" });
-  } 
+  }
 });
 
 // delete survey route for administrator
@@ -156,7 +156,7 @@ router.delete("/:id", async (req, res) => {
     await pool.query("BEGIN");
 
     // Delete related records from the questions table
-    await pool.query("DELETE FROM ANSWERS WHERE survey_id = $1", [id]);    
+    await pool.query("DELETE FROM ANSWERS WHERE survey_id = $1", [id]);
 
     // Delete related records from the questions table
     await pool.query("DELETE FROM questions WHERE survey_id = $1", [id]);
