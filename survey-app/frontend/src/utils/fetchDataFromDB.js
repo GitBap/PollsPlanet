@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 // Surveys and survey info
 export const getQuestions = async (setIsLoading, setQuestions) => {
   try {
@@ -108,13 +110,20 @@ export const createUser = async (userData) => {
   }
 };
 
-export const loginUser = async (userData) => {
+export const loginUser = async (userData, setIsAuthenticated, navigate) => {
   try {
     const logUser = await fetch("http://localhost:3001/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     });
+
+    if (logUser) {
+      // TODO: create uuid for value and change name
+      Cookies.set("name", "sdklxpaDFfkdkfjsdlkll2432dfd");
+      setIsAuthenticated((prev) => !prev);
+      navigate("/surveys");
+    }
   } catch (err) {
     console.error(err.message);
   }
