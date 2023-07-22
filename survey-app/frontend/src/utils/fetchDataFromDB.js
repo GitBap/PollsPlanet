@@ -70,6 +70,21 @@ export const createSurvey = async (survey) => {
   }
 };
 
+export const editSurvey = async (surveyId, newSurvey) => {
+  try {
+    const survey = await fetch(
+      `http://localhost:3001/api/surveys/${surveyId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newSurvey),
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 // Admins and admin info
 
 export const getUsers = async (setUsers) => {

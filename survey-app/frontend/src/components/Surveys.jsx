@@ -33,7 +33,9 @@ const Surveys = () => {
                   <Link className="btn open" to={`/surveys/${survey.id}`}>
                     Open
                   </Link>
-                  <button className="btn edit">Edit</button>
+                  <Link to={`/edit-survey/${survey.id}`} className="btn edit">
+                    Edit
+                  </Link>
                   <button
                     className="btn delete"
                     onClick={() => {
