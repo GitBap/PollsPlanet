@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 import { useParams } from "react-router-dom";
-import RangeAnswer from "./RangeAnswer";
-import ThanksModal from "./ThanksModal";
-import { postAnswers } from "../utils/fetchDataFromDB";
 import { getQuestions, getSurveys, editSurvey } from "../utils/fetchDataFromDB";
 
-import "./styles/survey.scss";
+import "./styles/editSurvey.scss";
 
 const Survey = () => {
   const { id } = useParams();
@@ -14,7 +11,7 @@ const Survey = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // FIXME: create useContext and cannot edit same questions
+  // FIXME: create useContext and cannot edit same questions. when the surveyTitle is empty the server brokes
   const [surveys, setSurveys] = useState([]);
 
   const [isEditQuestion, setIsEditQuestion] = useImmer({
@@ -61,52 +58,63 @@ const Survey = () => {
   }, []);
 
   return (
-    <section className="survey">
-      {questions && (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-          }}
-        >
-          {!isEditQuestion.surveyName ? (
-            <h3
-              className="survey-title"
-              onDoubleClick={() => {
-                setIsEditQuestion((draft) => {
-                  draft.surveyName = true;
-                });
-              }}
-            >
-              {newEditedSurvey[0]?.surveyName
-                ? newEditedSurvey[0]?.surveyName
-                : surveyWithID?.title}
-            </h3>
-          ) : (
-            <input
-              type="text"
-              value={newEditedSurvey.surveyName}
-              onChange={(event) => {
-                setNewEditedSurvey((draft) => {
-                  for (let i = 0; i < newEditedSurvey.length; i++) {
-                    draft[i].surveyName = event.target.value;
-                  }
-                });
-              }}
-              onBlur={() => {
-                setIsEditQuestion((draft) => {
-                  draft.surveyName = false;
-                });
-                editSurvey(id, newEditedSurvey[0]);
-              }}
-            />
-          )}
-          {questions
-            .filter((question) => question.survey_id === parseInt(id))
-            .map((question, index) => {
-              return (
-                <div key={`question-${index}`} className="survey-item">
-                  <div>
-                    <span>{index + 1}</span>
+    <section className="survey edit-survey">
+      <div className="container">
+        <div className="edit-survey-title">
+          <h3>Edit survey</h3>
+          <p
+            className="	
+advice"
+          >
+            ***Double click on an element to edit
+          </p>
+        </div>
+        {questions && (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+          >
+            <div className="heading">
+              {!isEditQuestion.surveyName ? (
+                <h3
+                  className="survey-title"
+                  onDoubleClick={() => {
+                    setIsEditQuestion((draft) => {
+                      draft.surveyName = true;
+                    });
+                  }}
+                >
+                  {newEditedSurvey[0]?.surveyName
+                    ? newEditedSurvey[0]?.surveyName
+                    : surveyWithID?.title}
+                </h3>
+              ) : (
+                <input
+                  type="text"
+                  value={newEditedSurvey.surveyName}
+                  onChange={(event) => {
+                    setNewEditedSurvey((draft) => {
+                      for (let i = 0; i < newEditedSurvey.length; i++) {
+                        draft[i].surveyName = event.target.value;
+                      }
+                    });
+                  }}
+                  onBlur={() => {
+                    setIsEditQuestion((draft) => {
+                      draft.surveyName = false;
+                    });
+                    editSurvey(id, newEditedSurvey[0]);
+                  }}
+                />
+              )}
+            </div>
+            {questions
+              .filter((question) => question.survey_id === parseInt(id))
+              .map((question, index) => {
+                return (
+                  <div key={`question-${index}`} className="survey-item">
+                    <span>{`${index + 1}.`}</span>
                     {!isEditQuestion.questions[index] ? (
                       <p
                         className="survey-question"
@@ -150,11 +158,11 @@ const Survey = () => {
                       />
                     )}
                   </div>
-                </div>
-              );
-            })}
-        </form>
-      )}
+                );
+              })}
+          </form>
+        )}
+      </div>
     </section>
   );
 };

@@ -1,0 +1,76 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.edit-survey {
+  .edit-survey-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+
+    h3 {
+      position: relative;
+      max-width: max-content;
+      text-transform: uppercase;
+      color: var(--heading-color);
+      font-weight: 600;
+
+      &::after {
+        @include border-bottom;
+      }
+    }
+
+    .advice {
+      color: var(--primary-color);
+      text-align: right;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+  }
+
+  form {
+    input {
+      width: 100%;
+      color: var(--text-color);
+      font-family: "Jost", sans-serif;
+      padding: 10px;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .heading {
+      margin-bottom: 20px;
+
+      .survey-title {
+        cursor: pointer;
+        transition: all ease-in 0.3s;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    .survey-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        display: block;
+      }
+
+      .survey-question {
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
