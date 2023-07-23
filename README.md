@@ -36,15 +36,21 @@ Our mission is to create a versatile platform that facilitates informed decision
 
 At PollsPlanet, we uphold the highest ethical standards. User privacy and data confidentiality are at the heart of our operations. The unique links or tokens distributed to participant users only grant access to specific surveys and cannot be traced back to individuals. As we move forward in enhancing the functionality of our platform, our commitment to these principles remains unwavering.
 
-_contributors_ \
+
+## Founding Team
+
+Our project was initiated and brought to life by the following individuals:
+
 [Yevhen Khreptun](https://github.com/khreptunyevhen) \
 [Woldy Jean](https://github.com/woldyj) \
 [Ke Qi](https://github.com/Shellaqi) \
 [Olivier Baptiste](https://github.com/GitBap) \
 [Paolo Junior Angeloni](https://github.com/PaoloJr90)
 
+They contributed their time, effort, and expertise to lay the foundation for what PollsPlanet has become and what it will evolve into in the future.
 
-## Contributing
+
+### Contributing
 
 PollsPlanet is the result of a dedicated team working hard as part of a Full Stack Development Capstone project. As we continue to evolve and refine the platform, we are excited about the prospect of welcoming external contributors who share our passion and vision.
 
