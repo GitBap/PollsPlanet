@@ -12,12 +12,12 @@ const router = express.Router();
 
 // statistic how many surveys created per administrator
 router.get("/countsurveys", async (req, res) => {
-  try{
-    console.log('in surveys counting....')
+  try {
+    console.log("in surveys counting....");
     const queryText = `SELECT u.id as user_id, u.name, COUNT(s.id) AS survey_count
           FROM users u
           LEFT JOIN surveys s ON u.id = s.user_id
-          GROUP BY u.id, u.name;`
+          GROUP BY u.id, u.name;`;
     const surveyResults = await pool.query(queryText);
     res.json(surveyResults.rows);
   } catch (err) {

@@ -1,0 +1,157 @@
+# OpenAPI specification for PollsPlanet API
+# first draft and is a work-in-progress
+# some of the endpoints are not implemented yet
+# some paths are for internal-use (admin) only
+# some paths are for external-use (participant) only
+
+openapi: 3.0.0
+info:
+  title: PollsPlanet API
+  description: PollsPlanet APIs for managing and participating in surveys
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3001/api
+    description: Local development server
+  - url: to be added once deployed on GCP
+    description: Production server; to be deployed on GCP (Google Cloud Platform)
+
+# paths for admin use only
+paths:
+  /surveys:
+    get:
+      summary: Get all surveys,
+      description: Get all surveys from root path of route,
+      responses:
+        "200":
+          description: Suveys retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "title": "First Survey",
+                    "created_at": "2021-07-21T18:00:00.000Z",
+                  }
+  /surveys/new-survey:
+    post:
+      summary: Create a new survey
+      description: Create a new survey
+      requestBody:
+        description: Survey object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                {
+                  "surveyName": "My Survey 2",
+                  "user_id": 1,
+                  "questions": ["Question 1", "Question 2"],
+                }
+      responses:
+        "200":
+          description: Survey and questions created successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  {
+                    "surveyId": 5,
+                    "message": "Survey and questions inserted successfully",
+                  }
+        "500":
+          description: Error creating survey
+          content:
+            application/json:
+              schema:
+                example:
+                  {
+                    "survey": { "message": "Error inserting survey" },
+                    "questions": { "message": "Error inserting questions" },
+                  }
+  /surveys/{:id}:
+    put:
+      summary: Update a survey
+      description: Update a survey
+      parameters:
+        - name: ":id"
+          in: path
+          description: Survey ID
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Survey object to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                {
+                  "surveyName": "My Survey 2",
+                  "questions":
+                    [
+                      { "id": 1, "question": "Question 1" },
+                      { "id": 2, "question": "Question 2" },
+                    ],
+                }
+      responses:
+        "200":
+          description: Survey and questions updated successfully
+          content:
+            application/json:
+              schema:
+                example: { "message": "Survey updated successfully" }
+        "500":
+          description: Error updating survey
+          content:
+            application/json:
+              schema:
+                example: { "survey": { "message": "Something went wrong" } }
+    delete:
+      summary: Delete a survey
+      description: Delete a survey
+      parameters:
+        - name: ":id"
+          in: path
+          description: Survey ID
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: Survey and questions deleted successfully
+          content:
+            application/json:
+              schema:
+                example: { "message": "Survey ${id} was deleted" }
+        "500":
+          description: Error deleting survey
+          content:
+            application/json:
+              schema:
+                example: no error message set yet
+  /usersurveys/{:id}:
+    get:
+      summary: Get all surveys by user_id
+      description: Get all surveys by user_id
+      parameters:
+        - name: ":id"
+          in: path
+          description: Survey ID
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: Survey and questions retrieved successfully
+          content:
+            application/json:
+              schema:
+                example: { "surveyId": 1, "survey_title": "My Survey" }
