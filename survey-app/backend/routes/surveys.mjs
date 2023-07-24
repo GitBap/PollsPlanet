@@ -10,6 +10,21 @@ import pool from "../db.js";
 
 const router = express.Router();
 
+// statistic how many surveys created per administrator
+router.get("/countsurveys", async (req, res) => {
+  try{
+    console.log('in surveys counting....')
+    const queryText = `SELECT u.id as user_id, u.name, COUNT(s.id) AS survey_count
+          FROM users u
+          LEFT JOIN surveys s ON u.id = s.user_id
+          GROUP BY u.id, u.name;`
+    const surveyResults = await pool.query(queryText);
+    res.json(surveyResults.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // create survey route for administrator
 router.post("/new-survey", async (req, res) => {
   const { surveyName, user_id, questions } = req.body;
@@ -171,19 +186,6 @@ router.delete("/:id", async (req, res) => {
     await pool.query("ROLLBACK");
     console.error("Error during transaction", error);
   }
-
-  // try {
-  //   // const { title } = req.body;
-  //   const { id } = req.params;
-  //   const deleteSurvey = await pool.query(
-  //     "DELETE FROM surveys WHERE id = $1 RETURNING *",
-  //     [id]
-  //   );
-
-  //   res.json(`Survey ${id} was deleted!`);
-  // } catch (err) {
-  //   console.error(err.message);
-  // }
 });
 
 export const surveyRouter = router;
