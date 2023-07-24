@@ -10,13 +10,8 @@ import { getUsers, loginUser } from "../utils/fetchDataFromDB";
 
 import "./styles/login.scss";
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = ({ setIsAuthenticated, userInfo, setUserInfo }) => {
   const navigate = useNavigate();
-
-  const [userInfo, setUserInfo] = useImmer({
-    email: "",
-    password: "",
-  });
 
   const [isValidate, setIsValidate] = useImmer({
     showInvalidEmail: false,

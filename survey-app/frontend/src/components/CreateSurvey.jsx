@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useImmer } from "use-immer";
 import { useNavigate } from "react-router-dom";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import { createSurvey } from "../utils/fetchDataFromDB";
 
+import { getUsers } from "../utils/fetchDataFromDB";
+
 import "./styles/createSurvey.scss";
 
-const CreateSurvey = () => {
+const CreateSurvey = ({ userInfo }) => {
   const [question, setQuestion] = useImmer("");
   const [isExistQuestion, setIsExistQuestion] = useImmer(false);
+  // TODO: add useContext
+  const [users, setUsers] = useImmer([]);
+
+  // FIXME: after refresh the user is gone
+  const connectUserId = users.find((user) => user.email === userInfo.email)?.id;
+
+  useEffect(() => {
+    getUsers(setUsers);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -77,6 +88,7 @@ const CreateSurvey = () => {
                 onChange={(event) => {
                   setNewSurvey((draft) => {
                     draft.surveyName = event.target.value;
+                    draft.user_id = Number(connectUserId);
                   });
                 }}
               />

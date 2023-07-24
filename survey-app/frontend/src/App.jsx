@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useImmer } from "use-immer";
 import { Route, Routes } from "react-router-dom";
 
 import { HelmetProvider } from "react-helmet-async";
@@ -21,6 +22,12 @@ import EditSurvey from "./components/EditSurvey";
 const App = () => {
   const [theme, setTheme] = useState("light");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // TODO: change to useContext
+  const [userInfo, setUserInfo] = useImmer({
+    email: "",
+    password: "",
+  });
 
   const readCookies = () => {
     const userCookies = Cookies.get("login-session");
@@ -64,7 +71,11 @@ const App = () => {
                 path="/login"
                 element={
                   !isAuthenticated && (
-                    <Login setIsAuthenticated={setIsAuthenticated} />
+                    <Login
+                      setIsAuthenticated={setIsAuthenticated}
+                      userInfo={userInfo}
+                      setUserInfo={setUserInfo}
+                    />
                   )
                 }
               />
@@ -76,7 +87,9 @@ const App = () => {
               />
               <Route
                 path="/create-survey"
-                element={isAuthenticated && <CreateSurvey />}
+                element={
+                  isAuthenticated && <CreateSurvey userInfo={userInfo} />
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
