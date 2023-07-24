@@ -155,3 +155,42 @@ paths:
             application/json:
               schema:
                 example: { "surveyId": 1, "survey_title": "My Survey" }
+  /surveys/countsurveys:
+    get:
+      summary: Get the total of surveys created per administrator
+      description: Get the user_id,user name and the total number of surveys created by each user_id
+      responses:
+        "200":
+          description: Suveys retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  [
+                    {
+                      "user_id": 4,
+                      "name": "Olivier",
+                      "survey_count": "0"
+                    },
+                    {
+                      "user_id": 3,
+                      "name": "Woldy",
+                      "survey_count": "0"
+                    },
+                    {
+                      "user_id": 1,
+                      "name": "Paolo",
+                      "survey_count": "2"
+                    },
+                    {
+                      "user_id": 5,
+                      "name": "Ke",
+                      "survey_count": "0"
+                    },
+                    {
+                      "user_id": 2,
+                      "name": "Yevhen",
+                      "survey_count": "0"
+                    }
+                  ]
+
