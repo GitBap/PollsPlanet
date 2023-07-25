@@ -18,9 +18,6 @@ const CreateSurvey = ({ userInfo }) => {
     (user) => user?.email === userInfo?.email
   )?.id;
 
-  // console.log(connectUserId);
-  // console.log(users);
-
   useEffect(() => {
     getUsers(setUsers);
   }, []);
@@ -66,8 +63,6 @@ const CreateSurvey = ({ userInfo }) => {
     }
 
     createSurvey(newSurvey);
-
-    console.log(newSurvey);
 
     setNewSurvey((draft) => {
       draft.surveyName = "";

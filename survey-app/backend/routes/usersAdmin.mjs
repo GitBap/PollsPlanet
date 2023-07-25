@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
     const foundUser = users.rows.find((user) => user.email === email);
 
     if (!foundUser) {
-      res.json({ message: `email: ${email} does not exist` });
+      res.status(401).json({ message: `email: ${email} does not exist` });
     } else {
       // bcrypt compare password hashes
       const hash_compare = await bcrypt.compare(password, foundUser.password);
@@ -74,11 +74,11 @@ router.post("/login", async (req, res) => {
           .status(200)
           .json({ message: "Successful Login" });
       } else {
-        res.json({ message: "incorrect password" });
+        res.status(401).json({ message: "incorrect password" });
       }
     }
   } catch (err) {
-    res.json({ message: "invalid email or password" });
+    res.status(401).json({ message: "invalid email or password" });
     console.error(err.message);
   }
 });

@@ -45,8 +45,8 @@ const Login = ({ setIsAuthenticated, userInfo, setUserInfo }) => {
               event.preventDefault();
 
               if (connectUserId) {
+                loginUser(userInfo, setIsAuthenticated, navigate);
               }
-              loginUser(userInfo, setIsAuthenticated, navigate);
             }}
           >
             <h2 className="form-title">Sign In</h2>

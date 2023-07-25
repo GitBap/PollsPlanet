@@ -95,7 +95,7 @@ export const surveysCounter = async (setSurveysCount, id) => {
     const surveyPerUser = surveysCount.find(
       (survey) => Number(survey.user_id) === Number(id)
     );
-    console.log(surveyPerUser);
+
     if (surveyPerUser) {
       setSurveysCount(surveyPerUser?.survey_count);
     }
@@ -154,10 +154,12 @@ export const loginUser = async (userData, setIsAuthenticated, navigate) => {
       body: JSON.stringify(userData),
     });
 
-    if (logUser) {
+    if (logUser.ok) {
       Cookies.set("login-session", `${uuidv4()}`);
       setIsAuthenticated(true);
       navigate("/surveys");
+    } else {
+      console.error("Login failed: ", logUser.status, logUser.statusText);
     }
   } catch (err) {
     console.error(err.message);
