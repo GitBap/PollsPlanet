@@ -53,7 +53,7 @@ CREATE TABLE SURVEYS (
     -- category VARCHAR(255) NOT NULL, -- programming, education, etc
     -- language VARCHAR(10) NOT NULL, -- english, french
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (id) REFERENCES USERS(id)
+    FOREIGN KEY (user_id) REFERENCES USERS(id)
 );
 
 -- DROP TABLE IF EXISTS QUESTIONS;
