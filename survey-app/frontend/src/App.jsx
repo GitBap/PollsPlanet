@@ -103,7 +103,9 @@ const App = () => {
               />
               <Route
                 path="/create-survey"
-                element={isAuthenticated && <CreateSurvey />}
+                element={
+                  isAuthenticated && <CreateSurvey userInfo={userInfo} />
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

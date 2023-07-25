@@ -93,10 +93,12 @@ export const surveysCounter = async (setSurveysCount, id) => {
     const surveysCount = await getAllSurvey.json();
 
     const surveyPerUser = surveysCount.find(
-      (survey) => Number(survey.user_id) === Number(27)
+      (survey) => Number(survey.user_id) === Number(id)
     );
-
-    setSurveysCount(surveyPerUser.survey_count);
+    console.log(surveyPerUser);
+    if (surveyPerUser) {
+      setSurveysCount(surveyPerUser?.survey_count);
+    }
   } catch (err) {
     console.error(err.message);
   }
@@ -154,7 +156,7 @@ export const loginUser = async (userData, setIsAuthenticated, navigate) => {
 
     if (logUser) {
       Cookies.set("login-session", `${uuidv4()}`);
-      setIsAuthenticated((prev) => !prev);
+      setIsAuthenticated(true);
       navigate("/surveys");
     }
   } catch (err) {

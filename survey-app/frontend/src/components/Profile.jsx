@@ -23,8 +23,11 @@ const Profile = ({ userInfo }) => {
   useEffect(() => {
     getUsers(setUsers);
     randomUserPhoto();
-    surveysCounter(setSurveyCount, connectUserId?.id);
   }, []);
+
+  useEffect(() => {
+    surveysCounter(setSurveyCount, connectUserId?.id);
+  });
 
   return (
     <section className="profile">
@@ -63,7 +66,7 @@ const Profile = ({ userInfo }) => {
               Go to see all <Link to={"/surveys"}>surveys</Link>.
             </p>
             <p>
-              Go to create a new <Link to={"/create-survey"}>surveys</Link>.
+              Go to create a new <Link to={"/create-survey"}>survey</Link>.
             </p>
           </div>
         </div>

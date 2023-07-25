@@ -12,6 +12,14 @@ import "./styles/login.scss";
 
 const Login = ({ setIsAuthenticated, userInfo, setUserInfo }) => {
   const navigate = useNavigate();
+  // TODO: add useContext
+  const [users, setUsers] = useImmer([]);
+
+  const connectUserId = users.find((user) => user?.email === userInfo?.email);
+
+  useEffect(() => {
+    getUsers(setUsers);
+  }, []);
 
   const [isValidate, setIsValidate] = useImmer({
     showInvalidEmail: false,
@@ -35,6 +43,9 @@ const Login = ({ setIsAuthenticated, userInfo, setUserInfo }) => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
+
+              if (connectUserId) {
+              }
               loginUser(userInfo, setIsAuthenticated, navigate);
             }}
           >
