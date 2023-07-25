@@ -92,6 +92,7 @@ export const getUsers = async (setUsers) => {
     const allUsers = await fetch("http://localhost:3001/api/admin");
     const users = await allUsers.json();
 
+    // trying to get cookie from response - something to work on later
     // const headers = allUsers.headers;
     // console.log(headers);
 

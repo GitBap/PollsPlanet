@@ -47,6 +47,7 @@ CREATE TABLE SURVEYS (
     id SERIAL PRIMARY KEY,
     -- tenant_id VARCHAR(255) NOT NULL UNIQUE, -- organization name
     user_id INT NOT NULL,
+    uuid uuid NOT NULL DEFAULT uuid_generate_v4(),
     title VARCHAR(255) NOT NULL,
     -- description TEXT NOT NULL,
     -- category VARCHAR(255) NOT NULL, -- programming, education, etc
