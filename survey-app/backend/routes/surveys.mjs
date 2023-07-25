@@ -27,12 +27,12 @@ router.get("/countsurveys", async (req, res) => {
 
 // create survey route for administrator
 router.post("/new-survey", async (req, res) => {
-  const { title, user_id, questions } = req.body;
+  const { surveyName, user_id, questions } = req.body;
 
   // Step 1: Insert the survey
   const insertSurveyQuery =
     "INSERT INTO surveys (user_id,title) VALUES ($1,$2) RETURNING id";
-  pool.query(insertSurveyQuery, [user_id, title], (err, surveyResult) => {
+  pool.query(insertSurveyQuery, [user_id, surveyName], (err, surveyResult) => {
     if (err) {
       console.error("Error inserting survey:", err);
       return res.status(500).json({ error: "Error inserting survey" });
