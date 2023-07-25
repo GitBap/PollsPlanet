@@ -6,27 +6,45 @@ PollsPlanet is an evolving web application empowering organizations to design an
 
 There are two distinct types of users within the platform: admins and participants. Admin users have the ability to create surveys and view the compiled data. Participant users, on the other hand, can only access and respond to the surveys they have been invited to via a unique link or token.
 
-In future versions, we aim to enhance the admin's ability to interact with the data, including robust export options for detailed analysis. 
+In future versions, we aim to enhance the admin's ability to interact with the data, including robust export options for detailed analysis.
 
-Additionally, we envision expanding PollsPlanet beyond the confines of multiple-choice responses. Our goal is to integrate more complex input types like text and to continue refining data analysis capabilities. We also aim to make the platform appealing for casual users seeking to make group decisions or connect with their communities in a fun and interactive way. 
+Additionally, we envision expanding PollsPlanet beyond the confines of multiple-choice responses. Our goal is to integrate more complex input types like text and to continue refining data analysis capabilities. We also aim to make the platform appealing for casual users seeking to make group decisions or connect with their communities in a fun and interactive way.
 
 Experience the current iteration of PollsPlanet by visiting [our website](https://somewhere.com).
 
 ## Installation (local development)
 
+### Backend
+
+#### Database Setup
+
+Once logged in to psql shell, enter this command:
+
+```SQL
+\i <abs_path_to_database.sql_file>
+```
+
+This will run the `database.sql` script and create the database and tables.
+
+#### Server Setup
+
+```bash
+cd PollsPlanet/survey-app/backend
+npm install
+npm run dev
+```
+
+this will start the backend server on `localhost:3001` with (inspect) nodemon
+
 ### Frontend
 
 ```bash
-cd frontend
+cd PollsPlanet/survey-app/frontend
 npm install
+npm run start
 ```
 
-### Backend
-
-```bash
-cd backend
-npm install
-```
+this will start the React-app on `localhost:3000`
 
 ## Goals and Mission
 
@@ -35,7 +53,6 @@ Our mission is to create a versatile platform that facilitates informed decision
 ## Ethical Considerations
 
 At PollsPlanet, we uphold the highest ethical standards. User privacy and data confidentiality are at the heart of our operations. The unique links or tokens distributed to participant users only grant access to specific surveys and cannot be traced back to individuals. As we move forward in enhancing the functionality of our platform, our commitment to these principles remains unwavering.
-
 
 ## Founding Team
 
@@ -48,7 +65,6 @@ Our project was initiated and brought to life by the following individuals:
 [Paolo Junior Angeloni](https://github.com/PaoloJr90)
 
 They contributed their time, effort, and expertise to lay the foundation for what PollsPlanet has become and what it will evolve into in the future.
-
 
 ### Contributing
 
