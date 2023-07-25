@@ -85,6 +85,23 @@ export const editSurvey = async (surveyId, newSurvey) => {
   }
 };
 
+export const surveysCounter = async (setSurveysCount, id) => {
+  try {
+    const getAllSurvey = await fetch(
+      "http://localhost:3001/api/surveys/countsurveys"
+    );
+    const surveysCount = await getAllSurvey.json();
+
+    const surveyPerUser = surveysCount.find(
+      (survey) => Number(survey.user_id) === Number(27)
+    );
+
+    setSurveysCount(surveyPerUser.survey_count);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 // Admins and admin info
 
 export const getUsers = async (setUsers) => {

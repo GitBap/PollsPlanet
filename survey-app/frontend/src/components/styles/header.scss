@@ -9,6 +9,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 5px;
+    flex-wrap: wrap;
 
     .logo-block {
       svg {
@@ -55,13 +56,25 @@ header {
       }
     }
 
-    .sign-out {
-      margin-right: 10px;
-      margin-left: auto;
+    .profile-btns {
+      display: flex;
+      align-items: center;
+      gap: 20px;
 
-      @media (max-width: 640px) {
-        font-size: 14px;
-        padding: 2px;
+      .sign-out {
+        margin-right: 10px;
+        margin-left: auto;
+      }
+
+      .profile {
+        cursor: pointer;
+        display: inline-block;
+        color: var(--button-text-color);
+
+        svg {
+          width: 35px;
+          height: 35px;
+        }
       }
     }
 
