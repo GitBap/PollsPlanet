@@ -13,6 +13,7 @@ import Surveys from "./components/Surveys";
 import Survey from "./components/Survey";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 import Auth from "./components/Auth";
 import Cookies from "js-cookie";
@@ -94,13 +95,15 @@ const App = () => {
               <Route path="/surveys/:id" element={<Survey />} />
               <Route
                 path="/edit-survey/:id"
-                element={isAuthenticated && <EditSurvey />}
+                element={isAuthenticated && <EditSurvey userInfo={userInfo} />}
+              />
+              <Route
+                path="/profile"
+                element={isAuthenticated && <Profile userInfo={userInfo} />}
               />
               <Route
                 path="/create-survey"
-                element={
-                  isAuthenticated && <CreateSurvey userInfo={userInfo} />
-                }
+                element={isAuthenticated && <CreateSurvey />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -14,7 +14,6 @@ const CreateSurvey = ({ userInfo }) => {
   // TODO: add useContext
   const [users, setUsers] = useImmer([]);
 
-  // FIXME: after refresh the user is gone
   const connectUserId = users.find((user) => user.email === userInfo.email)?.id;
 
   useEffect(() => {

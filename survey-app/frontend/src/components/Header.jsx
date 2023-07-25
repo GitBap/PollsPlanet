@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "./Hamburger";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import Auth from "./Auth";
 
 import Cookies from "js-cookie";
@@ -136,16 +138,21 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
             </ul>
           </nav>
           {isAuthenticated ? (
-            <button
-              className="btn sign-out"
-              onClick={() => {
-                setIsAuthenticated(false);
-                Cookies.remove("login-session");
-                navigate("/");
-              }}
-            >
-              Sign out
-            </button>
+            <div className="profile-btns">
+              <Link to={"/profile"} className="profile">
+                <AccountBoxOutlinedIcon />
+              </Link>
+              <button
+                className="btn sign-out"
+                onClick={() => {
+                  setIsAuthenticated(false);
+                  Cookies.remove("login-session");
+                  navigate("/");
+                }}
+              >
+                <LogoutOutlinedIcon />
+              </button>
+            </div>
           ) : (
             <div className="login-btns">
               <Link className="btn" to={"/register"}>
@@ -196,7 +203,7 @@ c122 2 146 0 153 -13 5 -8 22 -15 39 -15 27 0 30 3 24 23 -4 12 -18 32 -31 45
                   navigate("/");
                 }}
               >
-                Sign out
+                <LogoutOutlinedIcon />
               </button>
             ) : (
               <div className="login-btns">
