@@ -41,6 +41,13 @@ const App = () => {
     const receiveTheme = window.localStorage.getItem("theme");
     if (receiveTheme !== null) setTheme(JSON.parse(receiveTheme));
 
+    const receiveActiveUser = window.localStorage.getItem("active-user");
+
+    if (receiveActiveUser !== null)
+      setUserInfo((draft) => {
+        draft.email = JSON.parse(receiveActiveUser);
+      });
+
     readCookies();
   }, []);
 
@@ -48,6 +55,10 @@ const App = () => {
     window.localStorage.setItem("theme", JSON.stringify(theme));
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    window.localStorage.setItem("active-user", JSON.stringify(userInfo.email));
+  }, [userInfo.email]);
 
   return (
     <div className="website">
