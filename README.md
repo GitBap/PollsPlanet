@@ -36,6 +36,9 @@ npm run dev
 
 this will start the backend server on `localhost:3001` with (inspect) nodemon
 
+API documentation can be found [here](./survey-app/backend/openAPI.yml) \
+Paste the contents of the file into [Swagger Editor](https://editor.swagger.io/) to view the documentation.
+
 ### Frontend
 
 ```bash
